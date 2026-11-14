@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arcade Scratch - Top 10 Juegos</title>
+  <!-- Fuentes amigables y redondeadas de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --scratch-orange: #ffab19;
+      --scratch-blue: #4d97ff;
+      --turbo-pink: #ff4c4c;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      color: var(--text-main);
+      padding-bottom: 60px;
+      overflow-x: hidden;
+    }
+
+    /* Fondo decorativo con figuras geométricas flotantes */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      animation: float 12s infinite ease-in-out;
+    }
+
+    .shape:nth-child(1) { width: 220px; height: 220px; top: -40px; left: -40px; }
+    .shape:nth-child(2) { width: 300px; height: 300px; bottom: 10%; right: -80px; animation-delay: -4s; }
+    .shape:nth-child(3) { width: 140px; height: 140px; top: 45%; left: 10%; animation-delay: -7s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-25px) rotate(10deg); }
+    }
+
+    /* Encabezado */
+    header {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 45px 20px 25px;
+      color: #fff;
+    }
+
+    .badge-top {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+    }
+
+    header h1 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      max-width: 620px;
+      margin: 0 auto;
+      opacity: 0.95;
+      font-weight: 700;
+    }
+
+    /* Barra de filtros */
+    .filters {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 20px 30px;
+    }
+
+    .filter-btn {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.22);
+      color: #fff;
+      backdrop-filter: blur(6px);
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .filter-btn:hover {
+      background: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: #ffab19;
+      color: #1e293b;
+      box-shadow: 0 4px 0 #d97706;
+    }
+
+    /* Contenedor principal de tarjetas */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* Tarjeta de juego */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18), 0 6px 0 rgba(0, 0, 0, 0.08);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.24), 0 8px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    /* Número de Ranking */
+    .rank-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #f1f5f9;
+      color: #475569;
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    .card[data-rank="1"] .rank-badge { background: #fef08a; color: #854d0e; }
+    .card[data-rank="2"] .rank-badge { background: #e2e8f0; color: #334155; }
+    .card[data-rank="3"] .rank-badge { background: #fed7aa; color: #9a3412; }
+
+    /* Contenedor del ícono distintivo */
+    .icon-box {
+      width: 84px;
+      height: 84px;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .icon-box svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+
+    .card h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .author {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .desc {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: #475569;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    /* Botones de acción */
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-play {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #22c55e;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 5px 0 #15803d;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-play:hover {
+      background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 #15803d;
+    }
+
+    .btn-play:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #15803d;
+    }
+
+    .btn-turbo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #f43f5e;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 12px 12px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 5px 0 #be123c;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      title: "Jugar rápido en TurboWarp";
+    }
+
+    .btn-turbo:hover {
+      background: #e11d48;
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 #be123c;
+    }
+
+    .btn-turbo:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #be123c;
+    }
+
+    /* Pie de página */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.9);
+      margin-top: 50px;
+      padding: 0 20px;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    footer span {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 8px 16px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <header>
+    <div class="badge-top">🚀 ZONA GAMER DE SCRATCH</div>
+    <h1>Top 10 Juegos Más Vistos</h1>
+    <p>¡Elige tu aventura favorita! Presiona el botón verde para abrir en Scratch o el rayo ⚡ para jugar súper rápido.</p>
+  </header>
+
+  <nav class="filters" aria-label="Filtrar juegos por categoría">
+    <button class="filter-btn active" data-filter="all">🌟 Todos (10)</button>
+    <button class="filter-btn" data-filter="plataformas">🏃 Plataformas</button>
+    <button class="filter-btn" data-filter="ritmo">🎵 Ritmo y Saltos</button>
+    <button class="filter-btn" data-filter="multijugador">🌍 Multijugador y Aventura</button>
+  </nav>
+
+  <main class="container" id="games-grid"></main>
+
+  <footer>
+    <span>💡 Tip: Si un juego se traba un poco, dale clic al botón ⚡ para jugarlo en modo Turbo.</span>
+  </footer>
+
+  <script>
+    const games = [
+      {
+        rank: 1,
+        id: "10128407",
+        title: "Paper Minecraft v11.7",
+        author: "griffpatch",
+        category: "multijugador",
+        tagText: "Construcción",
+        tagBg: "#dcfce7",
+        tagColor: "#166534",
+        iconBg: "linear-gradient(135deg, #4ade80, #16a34a)",
+        desc: "Explora, mina bloques, construye tu casa y sobrevive en este increíble mundo 2D inspirado en Minecraft.",
+        // Ícono bloque de césped
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <rect x="10" y="10" width="44" height="44" rx="8" fill="#854d0e"/>
+                <path d="M10 18C10 13.5817 13.5817 10 18 10H46C50.4183 10 54 13.5817 54 18V26H46V32H38V24H26V32H18V26H10V18Z" fill="#4ade80"/>
+                <rect x="20" y="38" width="6" height="6" rx="1" fill="#a16207"/>
+                <rect x="38" y="40" width="6" height="6" rx="1" fill="#a16207"/>
+              </svg>`
+      },
+      {
+        rank: 2,
+        id: "105500895",
+        title: "Geometry Dash v1.5",
+        author: "griffpatch",
+        category: "ritmo",
+        tagText: "Ritmo y Saltos",
+        tagBg: "#fef3c7",
+        tagColor: "#92400e",
+        iconBg: "linear-gradient(135deg, #facc15, #f97316)",
+        desc: "¡Salta al ritmo de la música! Esquiva pinchos y plataformas voladoras en los niveles clásicos 1 al 3.",
+        // Ícono cubo Geometry Dash
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <rect x="12" y="12" width="40" height="40" rx="8" fill="#38bdf8" stroke="#1e293b" stroke-width="4"/>
+                <rect x="20" y="22" width="8" height="8" rx="2" fill="#facc15" stroke="#1e293b" stroke-width="2.5"/>
+                <rect x="36" y="22" width="8" height="8" rx="2" fill="#facc15" stroke="#1e293b" stroke-width="2.5"/>
+                <rect x="20" y="36" width="24" height="6" rx="2" fill="#facc15" stroke="#1e293b" stroke-width="2.5"/>
+              </svg>`
+      },
+      {
+        rank: 3,
+        id: "389464290",
+        title: "Getting Over It v1.4",
+        author: "griffpatch",
+        category: "plataformas",
+        tagText: "Súper Reto",
+        tagBg: "#e0e7ff",
+        tagColor: "#3730a3",
+        iconBg: "linear-gradient(135deg, #60a5fa, #2563eb)",
+        desc: "Usa tu martillo gigante para escalar una montaña llena de obstáculos. ¡Requiere mucha paciencia y habilidad!",
+        // Ícono martillo y olla
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <path d="M22 36H42L39 52H25L22 36Z" fill="#334155"/>
+                <circle cx="32" cy="28" r="8" fill="#fde047"/>
+                <path d="M36 28L48 16" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
+                <rect x="43" y="10" width="12" height="7" rx="2" transform="rotate(45 43 10)" fill="#cbd5e1"/>
+              </svg>`
+      },
+      {
+        rank: 4,
+        id: "60917032",
+        title: "Appel v1.4",
+        author: "griffpatch",
+        category: "plataformas",
+        tagText: "Plataformas",
+        tagBg: "#fee2e2",
+        tagColor: "#991b1b",
+        iconBg: "linear-gradient(135deg, #fb7185, #e11d48)",
+        desc: "Ayuda a Appel a recolectar todas las manzanas doradas saltando paredes y esquivando enemigos.",
+        // Ícono manzana con carita
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <path d="M32 18C23 18 15 24 15 35C15 46 23 53 32 53C41 53 49 46 49 35C49 24 41 18 32 18Z" fill="#fde047"/>
+                <path d="M32 18V11" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+                <path d="M32 13C36 9 42 10 43 14C39 16 35 15 32 13Z" fill="#4ade80"/>
+                <circle cx="26" cy="34" r="3" fill="#1e293b"/>
+                <circle cx="38" cy="34" r="3" fill="#1e293b"/>
+                <path d="M28 41C30 43 34 43 36 41" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+              </svg>`
+      },
+      {
+        rank: 5,
+        id: "21554369",
+        title: "Epic Ninja v1.12",
+        author: "griffpatch",
+        category: "plataformas",
+        tagText: "Acción Ninja",
+        tagBg: "#f3e8ff",
+        tagColor: "#6b21a8",
+        iconBg: "linear-gradient(135deg, #a855f7, #6b21a8)",
+        desc: "Corre por las paredes, lanza estrellas shuriken y vence a tus rivales como un verdadero maestro ninja.",
+        // Ícono estrella shuriken
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <path d="M32 8L38 26L56 32L38 38L32 56L26 38L8 32L26 26L32 8Z" fill="#e2e8f0" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
+                <circle cx="32" cy="32" r="5" fill="#4f46e5"/>
+              </svg>`
+      },
+      {
+        rank: 6,
+        id: "887172546",
+        title: "Mello 2 // Platformer",
+        author: "chipm0nk",
+        category: "plataformas",
+        tagText: "50 Niveles",
+        tagBg: "#e0f2fe",
+        tagColor: "#075985",
+        iconBg: "linear-gradient(135deg, #38bdf8, #0284c7)",
+        desc: "¡50 niveles llenos de trampolines, llaves secretas y puertas cerradas! Súper colorido y divertido.",
+        // Ícono personaje Mello con corona/llave
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <rect x="16" y="18" width="32" height="32" rx="10" fill="#ffffff"/>
+                <circle cx="26" cy="32" r="3.5" fill="#0f172a"/>
+                <circle cx="38" cy="32" r="3.5" fill="#0f172a"/>
+                <path d="M22 18L26 11L32 16L38 11L42 18H22Z" fill="#facc15"/>
+              </svg>`
+      },
+      {
+        rank: 7,
+        id: "860151753",
+        title: "Geometry (Egg) Dash",
+        author: "chipm0nk",
+        category: "ritmo",
+        tagText: "Ritmo y Editor",
+        tagBg: "#fef9c3",
+        tagColor: "#854d0e",
+        iconBg: "linear-gradient(135deg, #fbbf24, #d97706)",
+        desc: "Una versión súper creativa de Geometry Dash donde controlas a un huevito saltarín. ¡Incluye creador de niveles!",
+        // Ícono huevito saltando
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <path d="M32 12C22 12 16 25 16 37C16 46 23 52 32 52C41 52 48 46 48 37C48 25 42 12 32 12Z" fill="#fffbeb" stroke="#1e293b" stroke-width="3"/>
+                <circle cx="27" cy="33" r="3" fill="#1e293b"/>
+                <circle cx="37" cy="33" r="3" fill="#1e293b"/>
+                <path d="M29 39C31 41 33 41 35 39" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+              </svg>`
+      },
+      {
+        rank: 8,
+        id: "612229554",
+        title: "Massive Multiplayer",
+        author: "griffpatch",
+        category: "multijugador",
+        tagText: "En Línea",
+        tagBg: "#ccfbf1",
+        tagColor: "#115e59",
+        iconBg: "linear-gradient(135deg, #2dd4bf, #0d9488)",
+        desc: "¡Juega al mismo tiempo con decenas de jugadores de todo el mundo saltando juntos por un mapa gigante!",
+        // Ícono mundo / jugadores conectados
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <circle cx="32" cy="32" r="20" fill="#bae6fd" stroke="#ffffff" stroke-width="3"/>
+                <path d="M18 28C22 25 27 27 29 31C31 35 27 42 22 41" fill="#4ade80"/>
+                <path d="M36 20C41 21 46 27 43 33C40 38 35 35 35 30" fill="#4ade80"/>
+                <circle cx="32" cy="24" r="4" fill="#f43f5e"/>
+                <circle cx="24" cy="38" r="4" fill="#facc15"/>
+                <circle cx="41" cy="37" r="4" fill="#a855f7"/>
+              </svg>`
+      },
+      {
+        rank: 9,
+        id: "56667360",
+        title: "Hill Climb Racing",
+        author: "griffpatch",
+        category: "plataformas",
+        tagText: "Carreras",
+        tagBg: "#ffedd5",
+        tagColor: "#9a3412",
+        iconBg: "linear-gradient(135deg, #fb923c, #ea580c)",
+        desc: "Conduce tu jeep por montañas empinadas sin volcarte, recoge monedas y mejora tu motor y llantas.",
+        // Ícono carrito todo terreno
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <path d="M14 36L20 24H38L48 32V38H14V36Z" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
+                <circle cx="22" cy="42" r="7" fill="#1e293b" stroke="#cbd5e1" stroke-width="2.5"/>
+                <circle cx="42" cy="42" r="7" fill="#1e293b" stroke="#cbd5e1" stroke-width="2.5"/>
+              </svg>`
+      },
+      {
+        rank: 10,
+        id: "108566337",
+        title: "slither.io v1.13",
+        author: "griffpatch",
+        category: "multijugador",
+        tagText: "Serpientes",
+        tagBg: "#fae8ff",
+        tagColor: "#86198f",
+        iconBg: "linear-gradient(135deg, #e879f9, #c026d3)",
+        desc: "Come puntitos brillantes para hacer crecer tu serpiente gigante y personaliza sus colores y estilos.",
+        // Ícono serpiente colorida
+        svg: `<svg viewBox="0 0 64 64" fill="none">
+                <path d="M16 44C16 34 26 36 30 28C34 20 26 16 36 16C44 16 48 22 48 26" stroke="#bef264" stroke-width="10" stroke-linecap="round"/>
+                <circle cx="48" cy="25" r="2.5" fill="#1e293b"/>
+                <circle cx="44" cy="28" r="2.5" fill="#1e293b"/>
+                <circle cx="20" cy="20" r="3" fill="#fde047"/>
+                <circle cx="46" cy="44" r="3.5" fill="#38bdf8"/>
+              </svg>`
+      }
+    ];
+
+    const grid = document.getElementById("games-grid");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    function renderGames(filter = "all") {
+      grid.innerHTML = "";
+      const filtered = filter === "all" 
+        ? games 
+        : games.filter(g => g.category === filter);
+
+      filtered.forEach(game => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.setAttribute("data-rank", game.rank);
+
+        card.innerHTML = `
+          <span class="rank-badge">#${game.rank}</span>
+          <div>
+            <div class="icon-box" style="background: ${game.iconBg};">
+              ${game.svg}
+            </div>
+            <span class="tag" style="background: ${game.tagBg}; color: ${game.tagColor};">
+              ${game.tagText}
+            </span>
+            <h2>${game.title}</h2>
+            <p class="author">Por @${game.author}</p>
+            <p class="desc">${game.desc}</p>
+          </div>
+          <div class="actions">
+            <a class="btn-play" href="https://scratch.mit.edu/projects/${game.id}/" target="_blank" rel="noopener noreferrer">
+              ▶ Jugar
+            </a>
+            <a class="btn-turbo" href="https://turbowarp.org/${game.id}" target="_blank" rel="noopener noreferrer" title="Abrir en TurboWarp (60 FPS)">
+              ⚡ Turbo
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderGames(btn.dataset.filter);
+      });
+    });
+
+    // Render inicial
+    renderGames();
+  </script>
+</body>
+</html>
