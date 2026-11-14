@@ -4,21 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Laboratorio Scratch - Top 20 Proyectos de Programación</title>
-  <!-- Fuentes amigables y redondeadas de Google Fonts -->
+  <!-- Equivalentes web de alta precisión para Messina Sans y Newslab -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+      /* Paleta exacta del Kit de Marca */
+      --brand-navy: #1f355e;
+      --brand-slate: #6a7c8b;
+      --brand-orange: #ff7843;
+      --brand-orange-dark: #d95b2b;
+      --brand-gray: #ececec;
       --card-bg: #ffffff;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --scratch-orange: #ffab19;
-      --scratch-blue: #4d97ff;
-      --radius-lg: 24px;
-      --radius-md: 16px;
+      --text-main: #1f355e;
+      --text-muted: #6a7c8b;
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --font-sans: 'Messina Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-slab: 'Newslab', 'Bitter', Georgia, serif;
     }
 
     * {
@@ -28,15 +33,15 @@
     }
 
     body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--bg-gradient);
+      font-family: var(--font-sans);
+      background: linear-gradient(155deg, var(--brand-navy) 0%, #2a467a 55%, var(--brand-slate) 100%);
       min-height: 100vh;
       color: var(--text-main);
       padding-bottom: 60px;
       overflow-x: hidden;
     }
 
-    /* Fondo decorativo con figuras geométricas flotantes */
+    /* Fondo decorativo sutil con los tonos de marca */
     .bg-shapes {
       position: fixed;
       inset: 0;
@@ -48,17 +53,17 @@
     .shape {
       position: absolute;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      animation: float 12s infinite ease-in-out;
+      background: rgba(236, 236, 236, 0.05);
+      animation: float 14s infinite ease-in-out;
     }
 
-    .shape:nth-child(1) { width: 220px; height: 220px; top: -40px; left: -40px; }
-    .shape:nth-child(2) { width: 300px; height: 300px; bottom: 10%; right: -80px; animation-delay: -4s; }
-    .shape:nth-child(3) { width: 140px; height: 140px; top: 45%; left: 10%; animation-delay: -7s; }
+    .shape:nth-child(1) { width: 260px; height: 260px; top: -60px; left: -60px; }
+    .shape:nth-child(2) { width: 340px; height: 340px; bottom: 8%; right: -90px; animation-delay: -5s; }
+    .shape:nth-child(3) { width: 160px; height: 160px; top: 45%; left: 8%; animation-delay: -8s; }
 
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-25px) rotate(10deg); }
+      50% { transform: translateY(-20px) rotate(8deg); }
     }
 
     /* Barra superior para Papás */
@@ -69,34 +74,35 @@
       justify-content: flex-end;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 18px 20px 0;
+      padding: 20px 20px 0;
     }
 
     .btn-parents {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      background: #ffffff;
-      color: #4f46e5;
-      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 700;
+      background: var(--brand-gray);
+      color: var(--brand-navy);
+      border: 2px solid #ffffff;
       padding: 10px 20px;
       border-radius: 999px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18), 0 4px 0 #cbd5e1;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 16px rgba(15, 25, 48, 0.28), 0 4px 0 #c7ccd1;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
     .btn-parents:hover {
+      background: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22), 0 6px 0 #cbd5e1;
+      box-shadow: 0 8px 20px rgba(15, 25, 48, 0.34), 0 6px 0 #c7ccd1;
     }
 
     .btn-parents:active {
       transform: translateY(2px);
-      box-shadow: 0 2px 0 #cbd5e1;
+      box-shadow: 0 2px 0 #c7ccd1;
     }
 
     /* Encabezado */
@@ -104,37 +110,41 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 25px 20px 25px;
-      color: #fff;
+      padding: 26px 20px 26px;
+      color: #ffffff;
     }
 
     .badge-top {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 120, 67, 0.18);
+      color: #ffffff;
       backdrop-filter: blur(8px);
-      padding: 8px 18px;
+      padding: 7px 18px;
       border-radius: 999px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      letter-spacing: 0.5px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.8px;
       margin-bottom: 14px;
-      border: 2px solid rgba(255, 255, 255, 0.35);
+      border: 1.5px solid var(--brand-orange);
     }
 
     header h1 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: clamp(2.1rem, 5vw, 3.4rem);
+      font-family: var(--font-slab);
+      font-size: clamp(2rem, 4.8vw, 3.25rem);
       font-weight: 700;
-      text-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
-      margin-bottom: 10px;
+      text-shadow: 0 4px 12px rgba(15, 25, 48, 0.35);
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
     }
 
     header p {
-      font-size: clamp(1rem, 2.2vw, 1.2rem);
-      max-width: 660px;
+      font-family: var(--font-sans);
+      font-size: clamp(0.98rem, 2vw, 1.12rem);
+      max-width: 680px;
       margin: 0 auto;
-      opacity: 0.95;
-      font-weight: 700;
+      color: var(--brand-gray);
+      line-height: 1.55;
+      font-weight: 500;
     }
 
     /* Barra de filtros */
@@ -145,33 +155,34 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 10px;
-      padding: 10px 20px 30px;
+      padding: 10px 20px 32px;
     }
 
     .filter-btn {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 700;
       padding: 10px 20px;
       border-radius: 999px;
-      border: none;
+      border: 1.5px solid rgba(236, 236, 236, 0.28);
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.22);
-      color: #fff;
+      background: rgba(31, 53, 94, 0.55);
+      color: var(--brand-gray);
       backdrop-filter: blur(6px);
       transition: all 0.2s ease;
-      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
     }
 
     .filter-btn:hover {
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.16);
+      color: #ffffff;
       transform: translateY(-2px);
     }
 
     .filter-btn.active {
-      background: #ffab19;
-      color: #1e293b;
-      box-shadow: 0 4px 0 #d97706;
+      background: var(--brand-orange);
+      color: #ffffff;
+      border-color: var(--brand-orange);
+      box-shadow: 0 4px 0 var(--brand-orange-dark);
     }
 
     /* Contenedor principal de tarjetas */
@@ -190,93 +201,99 @@
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18), 0 6px 0 rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(236, 236, 236, 0.9);
+      box-shadow: 0 14px 28px rgba(15, 25, 48, 0.22), 0 5px 0 rgba(15, 25, 48, 0.12);
       transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
       position: relative;
       overflow: hidden;
     }
 
     .card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.24), 0 8px 0 rgba(0, 0, 0, 0.1);
+      transform: translateY(-7px);
+      box-shadow: 0 22px 38px rgba(15, 25, 48, 0.3), 0 7px 0 var(--brand-orange);
     }
 
     /* Número de Ranking */
     .rank-badge {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      background: #f1f5f9;
-      color: #475569;
-      font-family: 'Fredoka', sans-serif;
+      top: 18px;
+      right: 18px;
+      background: var(--brand-gray);
+      color: var(--brand-navy);
+      font-family: var(--font-slab);
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       padding: 4px 12px;
       border-radius: 999px;
     }
 
-    .card[data-rank="1"] .rank-badge { background: #fef08a; color: #854d0e; }
-    .card[data-rank="2"] .rank-badge { background: #e2e8f0; color: #334155; }
-    .card[data-rank="3"] .rank-badge { background: #fed7aa; color: #9a3412; }
+    .card[data-rank="1"] .rank-badge,
+    .card[data-rank="2"] .rank-badge,
+    .card[data-rank="3"] .rank-badge {
+      background: var(--brand-navy);
+      color: #ffffff;
+    }
 
     /* Contenedor del ícono distintivo */
     .icon-box {
-      width: 84px;
-      height: 84px;
-      border-radius: 22px;
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
-      box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.16);
     }
 
     .icon-box svg {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
     }
 
     .tag {
       display: inline-block;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.7px;
       padding: 4px 10px;
       border-radius: 8px;
       margin-bottom: 8px;
       width: fit-content;
+      background: var(--brand-gray);
+      color: var(--brand-navy);
     }
 
     .card h2 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.38rem;
+      font-family: var(--font-slab);
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: var(--brand-navy);
       margin-bottom: 4px;
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     .author {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 700;
-      color: var(--text-muted);
+      color: var(--brand-slate);
       margin-bottom: 10px;
     }
 
     .desc {
-      font-size: 0.95rem;
-      line-height: 1.45;
-      color: #475569;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      color: #3d4f63;
       margin-bottom: 20px;
       flex-grow: 1;
     }
 
-    /* Botones de acción */
+    /* Botones de acción con colores institucionales */
     .actions {
       display: flex;
       gap: 10px;
@@ -288,61 +305,61 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: #22c55e;
-      color: #fff;
+      background: var(--brand-orange);
+      color: #ffffff;
       text-decoration: none;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.02rem;
-      font-weight: 600;
+      font-family: var(--font-sans);
+      font-size: 0.96rem;
+      font-weight: 700;
       padding: 12px 14px;
       border-radius: var(--radius-md);
-      box-shadow: 0 5px 0 #15803d;
+      box-shadow: 0 4px 0 var(--brand-orange-dark);
       transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
     .btn-explore:hover {
-      background: #16a34a;
+      background: #ff662b;
       transform: translateY(-2px);
-      box-shadow: 0 7px 0 #15803d;
+      box-shadow: 0 6px 0 var(--brand-orange-dark);
     }
 
     .btn-explore:active {
-      transform: translateY(3px);
-      box-shadow: 0 2px 0 #15803d;
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 var(--brand-orange-dark);
     }
 
     .btn-turbo {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: #f43f5e;
-      color: #fff;
+      background: var(--brand-navy);
+      color: #ffffff;
       text-decoration: none;
-      font-family: 'Fredoka', sans-serif;
+      font-family: var(--font-sans);
       font-size: 0.9rem;
-      font-weight: 600;
-      padding: 12px 12px;
+      font-weight: 700;
+      padding: 12px 14px;
       border-radius: var(--radius-md);
-      box-shadow: 0 5px 0 #be123c;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 0 #111f38;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
     .btn-turbo:hover {
-      background: #e11d48;
+      background: #29467a;
       transform: translateY(-2px);
-      box-shadow: 0 7px 0 #be123c;
+      box-shadow: 0 6px 0 #111f38;
     }
 
     .btn-turbo:active {
-      transform: translateY(3px);
-      box-shadow: 0 2px 0 #be123c;
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #111f38;
     }
 
     /* Modal Pedagógico para Papás */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.72);
+      background: rgba(17, 31, 56, 0.78);
       backdrop-filter: blur(6px);
       z-index: 100;
       display: none;
@@ -367,10 +384,11 @@
       width: 100%;
       max-height: 88vh;
       overflow-y: auto;
-      border-radius: 28px;
+      border-radius: 26px;
       padding: 32px;
       position: relative;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+      border-top: 8px solid var(--brand-orange);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
       animation: popUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
@@ -383,46 +401,47 @@
       position: sticky;
       top: 0;
       float: right;
-      background: #f1f5f9;
+      background: var(--brand-gray);
       border: none;
       width: 38px;
       height: 38px;
       border-radius: 50%;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 800;
-      color: #475569;
+      color: var(--brand-navy);
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
 
     .modal-close:hover {
-      background: #e2e8f0;
-      color: #0f172a;
+      background: var(--brand-orange);
+      color: #ffffff;
     }
 
     .modal-badge {
       display: inline-block;
-      background: #e0e7ff;
-      color: #4338ca;
+      background: var(--brand-gray);
+      color: var(--brand-navy);
       font-weight: 800;
-      font-size: 0.82rem;
-      padding: 5px 14px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      padding: 6px 14px;
       border-radius: 999px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .modal-box h2 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.85rem;
-      color: #1e293b;
+      font-family: var(--font-slab);
+      font-size: 1.75rem;
+      color: var(--brand-navy);
       margin-bottom: 14px;
       line-height: 1.25;
     }
 
     .modal-box p {
-      font-size: 1rem;
+      font-size: 0.98rem;
       line-height: 1.65;
-      color: #334155;
+      color: #3d4f63;
       margin-bottom: 14px;
     }
 
@@ -434,16 +453,16 @@
     }
 
     .pillar-card {
-      background: #f8fafc;
-      border: 2px solid #e2e8f0;
-      border-radius: 18px;
+      background: var(--brand-gray);
+      border-left: 4px solid var(--brand-orange);
+      border-radius: 14px;
       padding: 16px;
     }
 
     .pillar-card h3 {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.1rem;
-      color: #4f46e5;
+      font-family: var(--font-slab);
+      font-size: 1.05rem;
+      color: var(--brand-navy);
       margin-bottom: 6px;
       display: flex;
       align-items: center;
@@ -451,29 +470,30 @@
     }
 
     .pillar-card p {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       margin-bottom: 0;
-      color: #475569;
+      color: #3d4f63;
     }
 
     .modal-footer-btn {
       width: 100%;
       margin-top: 10px;
-      background: #4f46e5;
+      background: var(--brand-navy);
       color: #ffffff;
       border: none;
       padding: 14px;
-      border-radius: 16px;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 600;
+      border-radius: 14px;
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 5px 0 #3730a3;
+      box-shadow: 0 4px 0 #111f38;
       transition: background 0.2s;
     }
 
     .modal-footer-btn:hover {
-      background: #4338ca;
+      background: var(--brand-orange);
+      box-shadow: 0 4px 0 var(--brand-orange-dark);
     }
 
     /* Pie de página */
@@ -481,16 +501,17 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--brand-gray);
       margin-top: 50px;
       padding: 0 20px;
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-size: 0.92rem;
+      font-weight: 600;
     }
 
     footer span {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 8px 16px;
+      background: rgba(17, 31, 56, 0.45);
+      border: 1px solid rgba(236, 236, 236, 0.2);
+      padding: 10px 20px;
       border-radius: 999px;
       display: inline-block;
     }
@@ -514,7 +535,7 @@
   <header>
     <div class="badge-top">💻 LABORATORIO DE PROGRAMACIÓN CREATIVA</div>
     <h1>Top 20 Proyectos de Código en Scratch</h1>
-    <p>¡Explora cómo están programados los retos más famosos del mundo! Presiona el botón verde para analizar el código o el rayo ⚡ para ejecutarlo a máxima velocidad.</p>
+    <p>¡Explora cómo están programados los retos más famosos del mundo! Presiona el botón naranja para analizar el código o el botón azul ⚡ para ejecutarlo a máxima velocidad.</p>
   </header>
 
   <nav class="filters" aria-label="Filtrar proyectos de programación por categoría">
@@ -594,9 +615,7 @@
         author: "griffpatch",
         category: "nube",
         tagText: "Generación de Mundos",
-        tagBg: "#dcfce7",
-        tagColor: "#166534",
-        iconBg: "linear-gradient(135deg, #4ade80, #16a34a)",
+        iconBg: "linear-gradient(135deg, #1f355e, #37558c)",
         desc: "Simulador 2D programado con listas y matrices para construir estructuras, administrar recursos y explorar biomas.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <rect x="10" y="10" width="44" height="44" rx="8" fill="#854d0e"/>
@@ -612,15 +631,13 @@
         author: "griffpatch",
         category: "ritmo",
         tagText: "Ritmo y Precisión",
-        tagBg: "#fef3c7",
-        tagColor: "#92400e",
-        iconBg: "linear-gradient(135deg, #facc15, #f97316)",
+        iconBg: "linear-gradient(135deg, #ff7843, #e05a26)",
         desc: "Proyecto de sincronización musical y detección de colisiones donde cada salto depende del tiempo exacto del pulso.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <rect x="12" y="12" width="40" height="40" rx="8" fill="#38bdf8" stroke="#1e293b" stroke-width="4"/>
-                <rect x="20" y="22" width="8" height="8" rx="2" fill="#facc15" stroke="#1e293b" stroke-width="2.5"/>
-                <rect x="36" y="22" width="8" height="8" rx="2" fill="#facc15" stroke="#1e293b" stroke-width="2.5"/>
-                <rect x="20" y="36" width="24" height="6" rx="2" fill="#facc15" stroke="#1e293b" stroke-width="2.5"/>
+                <rect x="12" y="12" width="40" height="40" rx="8" fill="#ececec" stroke="#1f355e" stroke-width="4"/>
+                <rect x="20" y="22" width="8" height="8" rx="2" fill="#ff7843" stroke="#1f355e" stroke-width="2.5"/>
+                <rect x="36" y="22" width="8" height="8" rx="2" fill="#ff7843" stroke="#1f355e" stroke-width="2.5"/>
+                <rect x="20" y="36" width="24" height="6" rx="2" fill="#ff7843" stroke="#1f355e" stroke-width="2.5"/>
               </svg>`
       },
       {
@@ -630,15 +647,13 @@
         author: "griffpatch",
         category: "fisica",
         tagText: "Física y Palancas",
-        tagBg: "#e0e7ff",
-        tagColor: "#3730a3",
-        iconBg: "linear-gradient(135deg, #60a5fa, #2563eb)",
+        iconBg: "linear-gradient(135deg, #6a7c8b, #4c5c69)",
         desc: "Demostración avanzada de trigonometría, puntos de apoyo y cálculo de fuerzas para escalar una montaña virtual.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M22 36H42L39 52H25L22 36Z" fill="#334155"/>
-                <circle cx="32" cy="28" r="8" fill="#fde047"/>
-                <path d="M36 28L48 16" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
-                <rect x="43" y="10" width="12" height="7" rx="2" transform="rotate(45 43 10)" fill="#cbd5e1"/>
+                <path d="M22 36H42L39 52H25L22 36Z" fill="#1f355e"/>
+                <circle cx="32" cy="28" r="8" fill="#ececec"/>
+                <path d="M36 28L48 16" stroke="#ff7843" stroke-width="4" stroke-linecap="round"/>
+                <rect x="43" y="10" width="12" height="7" rx="2" transform="rotate(45 43 10)" fill="#ffffff"/>
               </svg>`
       },
       {
@@ -648,17 +663,15 @@
         author: "griffpatch",
         category: "fisica",
         tagText: "Motor de Gravedad",
-        tagBg: "#fee2e2",
-        tagColor: "#991b1b",
-        iconBg: "linear-gradient(135deg, #fb7185, #e11d48)",
+        iconBg: "linear-gradient(135deg, #ff7843, #1f355e)",
         desc: "Entorno programado con aceleración, rebotes en muros y editor visual para diseñar tus propios mapas de obstáculos.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M32 18C23 18 15 24 15 35C15 46 23 53 32 53C41 53 49 46 49 35C49 24 41 18 32 18Z" fill="#fde047"/>
-                <path d="M32 18V11" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+                <path d="M32 18C23 18 15 24 15 35C15 46 23 53 32 53C41 53 49 46 49 35C49 24 41 18 32 18Z" fill="#ececec"/>
+                <path d="M32 18V11" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
                 <path d="M32 13C36 9 42 10 43 14C39 16 35 15 32 13Z" fill="#4ade80"/>
-                <circle cx="26" cy="34" r="3" fill="#1e293b"/>
-                <circle cx="38" cy="34" r="3" fill="#1e293b"/>
-                <path d="M28 41C30 43 34 43 36 41" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="26" cy="34" r="3" fill="#1f355e"/>
+                <circle cx="38" cy="34" r="3" fill="#1f355e"/>
+                <path d="M28 41C30 43 34 43 36 41" stroke="#1f355e" stroke-width="3" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -668,13 +681,11 @@
         author: "griffpatch",
         category: "fisica",
         tagText: "Animación y Clones",
-        tagBg: "#f3e8ff",
-        tagColor: "#6b21a8",
-        iconBg: "linear-gradient(135deg, #a855f7, #6b21a8)",
+        iconBg: "linear-gradient(135deg, #1f355e, #6a7c8b)",
         desc: "Uso intensivo de clonación de objetos, trayectorias de proyectiles y desplazamiento lateral fluido en Scratch.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M32 8L38 26L56 32L38 38L32 56L26 38L8 32L26 26L32 8Z" fill="#e2e8f0" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
-                <circle cx="32" cy="32" r="5" fill="#4f46e5"/>
+                <path d="M32 8L38 26L56 32L38 38L32 56L26 38L8 32L26 26L32 8Z" fill="#ececec" stroke="#1f355e" stroke-width="3" stroke-linejoin="round"/>
+                <circle cx="32" cy="32" r="5" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -684,15 +695,13 @@
         author: "chipm0nk",
         category: "fisica",
         tagText: "50 Escenarios",
-        tagBg: "#e0f2fe",
-        tagColor: "#075985",
-        iconBg: "linear-gradient(135deg, #38bdf8, #0284c7)",
+        iconBg: "linear-gradient(135deg, #6a7c8b, #1f355e)",
         desc: "Secuencia lógica de 50 retos con trampolines, sensores de llaves y puertas programadas con variables booleanas.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <rect x="16" y="18" width="32" height="32" rx="10" fill="#ffffff"/>
-                <circle cx="26" cy="32" r="3.5" fill="#0f172a"/>
-                <circle cx="38" cy="32" r="3.5" fill="#0f172a"/>
-                <path d="M22 18L26 11L32 16L38 11L42 18H22Z" fill="#facc15"/>
+                <circle cx="26" cy="32" r="3.5" fill="#1f355e"/>
+                <circle cx="38" cy="32" r="3.5" fill="#1f355e"/>
+                <path d="M22 18L26 11L32 16L38 11L42 18H22Z" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -702,15 +711,13 @@
         author: "chipm0nk",
         category: "ritmo",
         tagText: "Ritmo y Editor",
-        tagBg: "#fef9c3",
-        tagColor: "#854d0e",
-        iconBg: "linear-gradient(135deg, #fbbf24, #d97706)",
+        iconBg: "linear-gradient(135deg, #ff7843, #f06029)",
         desc: "Simulador rítmico de precisión motriz que incluye herramientas integradas para que los alumnos diseñen niveles.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M32 12C22 12 16 25 16 37C16 46 23 52 32 52C41 52 48 46 48 37C48 25 42 12 32 12Z" fill="#fffbeb" stroke="#1e293b" stroke-width="3"/>
-                <circle cx="27" cy="33" r="3" fill="#1e293b"/>
-                <circle cx="37" cy="33" r="3" fill="#1e293b"/>
-                <path d="M29 39C31 41 33 41 35 39" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
+                <path d="M32 12C22 12 16 25 16 37C16 46 23 52 32 52C41 52 48 46 48 37C48 25 42 12 32 12Z" fill="#ffffff" stroke="#1f355e" stroke-width="3"/>
+                <circle cx="27" cy="33" r="3" fill="#1f355e"/>
+                <circle cx="37" cy="33" r="3" fill="#1f355e"/>
+                <path d="M29 39C31 41 33 41 35 39" stroke="#ff7843" stroke-width="3" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -720,17 +727,15 @@
         author: "griffpatch",
         category: "nube",
         tagText: "Datos en la Nube",
-        tagBg: "#ccfbf1",
-        tagColor: "#115e59",
-        iconBg: "linear-gradient(135deg, #2dd4bf, #0d9488)",
+        iconBg: "linear-gradient(135deg, #1f355e, #31508a)",
         desc: "Ejemplo real de redes y codificación de coordenadas X/Y en tiempo real usando variables en la nube de Scratch.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="20" fill="#bae6fd" stroke="#ffffff" stroke-width="3"/>
-                <path d="M18 28C22 25 27 27 29 31C31 35 27 42 22 41" fill="#4ade80"/>
-                <path d="M36 20C41 21 46 27 43 33C40 38 35 35 35 30" fill="#4ade80"/>
-                <circle cx="32" cy="24" r="4" fill="#f43f5e"/>
-                <circle cx="24" cy="38" r="4" fill="#facc15"/>
-                <circle cx="41" cy="37" r="4" fill="#a855f7"/>
+                <circle cx="32" cy="32" r="20" fill="#ececec" stroke="#ffffff" stroke-width="3"/>
+                <path d="M18 28C22 25 27 27 29 31C31 35 27 42 22 41" fill="#6a7c8b"/>
+                <path d="M36 20C41 21 46 27 43 33C40 38 35 35 35 30" fill="#6a7c8b"/>
+                <circle cx="32" cy="24" r="4" fill="#ff7843"/>
+                <circle cx="24" cy="38" r="4" fill="#1f355e"/>
+                <circle cx="41" cy="37" r="4" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -740,14 +745,12 @@
         author: "griffpatch",
         category: "fisica",
         tagText: "Simulación Vehicular",
-        tagBg: "#ffedd5",
-        tagColor: "#9a3412",
-        iconBg: "linear-gradient(135deg, #fb923c, #ea580c)",
+        iconBg: "linear-gradient(135deg, #6a7c8b, #51616e)",
         desc: "Programación de suspensión, ángulos de inclinación y control de aceleración/frenado sobre terrenos irregulares.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M14 36L20 24H38L48 32V38H14V36Z" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
-                <circle cx="22" cy="42" r="7" fill="#1e293b" stroke="#cbd5e1" stroke-width="2.5"/>
-                <circle cx="42" cy="42" r="7" fill="#1e293b" stroke="#cbd5e1" stroke-width="2.5"/>
+                <path d="M14 36L20 24H38L48 32V38H14V36Z" fill="#ff7843" stroke="#ffffff" stroke-width="2.5"/>
+                <circle cx="22" cy="42" r="7" fill="#1f355e" stroke="#ececec" stroke-width="2.5"/>
+                <circle cx="42" cy="42" r="7" fill="#1f355e" stroke="#ececec" stroke-width="2.5"/>
               </svg>`
       },
       {
@@ -757,16 +760,14 @@
         author: "griffpatch",
         category: "nube",
         tagText: "Vectores y Seguidores",
-        tagBg: "#fae8ff",
-        tagColor: "#86198f",
-        iconBg: "linear-gradient(135deg, #e879f9, #c026d3)",
+        iconBg: "linear-gradient(135deg, #1f355e, #6a7c8b)",
         desc: "Uso de listas de historial de posiciones para que decenas de segmentos sigan con precisión el puntero del ratón.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M16 44C16 34 26 36 30 28C34 20 26 16 36 16C44 16 48 22 48 26" stroke="#bef264" stroke-width="10" stroke-linecap="round"/>
-                <circle cx="48" cy="25" r="2.5" fill="#1e293b"/>
-                <circle cx="44" cy="28" r="2.5" fill="#1e293b"/>
-                <circle cx="20" cy="20" r="3" fill="#fde047"/>
-                <circle cx="46" cy="44" r="3.5" fill="#38bdf8"/>
+                <path d="M16 44C16 34 26 36 30 28C34 20 26 16 36 16C44 16 48 22 48 26" stroke="#ececec" stroke-width="10" stroke-linecap="round"/>
+                <circle cx="48" cy="25" r="2.5" fill="#1f355e"/>
+                <circle cx="44" cy="28" r="2.5" fill="#1f355e"/>
+                <circle cx="20" cy="20" r="3.5" fill="#ff7843"/>
+                <circle cx="46" cy="44" r="3.5" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -776,14 +777,12 @@
         author: "griffpatch",
         category: "nube",
         tagText: "Sellado y Terreno",
-        tagBg: "#dcfce7",
-        tagColor: "#166534",
-        iconBg: "linear-gradient(135deg, #22c55e, #15803d)",
+        iconBg: "linear-gradient(135deg, #1f355e, #2f4d85)",
         desc: "Arquitectura de renderizado rápido mediante bloques de sellado (Pen Stamp) para generar cavernas y minerales subterráneos.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M18 46L34 30" stroke="#92400e" stroke-width="5" stroke-linecap="round"/>
-                <path d="M24 18C32 16 44 22 46 34" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
-                <circle cx="44" cy="44" r="5" fill="#a855f7"/>
+                <path d="M18 46L34 30" stroke="#ececec" stroke-width="5" stroke-linecap="round"/>
+                <path d="M24 18C32 16 44 22 46 34" stroke="#ff7843" stroke-width="6" stroke-linecap="round"/>
+                <circle cx="44" cy="44" r="5" fill="#ececec"/>
               </svg>`
       },
       {
@@ -793,15 +792,13 @@
         author: "Brad-Games",
         category: "fisica",
         tagText: "Mecánicas de Salto",
-        tagBg: "#fee2e2",
-        tagColor: "#991b1b",
-        iconBg: "linear-gradient(135deg, #ef4444, #b91c1c)",
+        iconBg: "linear-gradient(135deg, #ff7843, #d95b2b)",
         desc: "Programación de proyectiles con retorno (búmeran), físicas de impulso y exploración de escenarios con cámara fluida.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M14 36C14 23 22 16 32 16C42 16 50 23 50 36H14Z" fill="#ef4444"/>
-                <rect x="12" y="34" width="40" height="7" rx="3.5" fill="#dc2626"/>
-                <circle cx="32" cy="26" r="6" fill="#ffffff"/>
-                <path d="M29 29V23L32 27L35 23V29" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 36C14 23 22 16 32 16C42 16 50 23 50 36H14Z" fill="#ffffff"/>
+                <rect x="12" y="34" width="40" height="7" rx="3.5" fill="#ececec"/>
+                <circle cx="32" cy="26" r="6" fill="#1f355e"/>
+                <path d="M29 29V23L32 27L35 23V29" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>`
       },
       {
@@ -811,13 +808,11 @@
         author: "CrystalKeeper7",
         category: "ritmo",
         tagText: "Efectos y Ritmo",
-        tagBg: "#e0f2fe",
-        tagColor: "#075985",
-        iconBg: "linear-gradient(135deg, #06b6d4, #0369a1)",
+        iconBg: "linear-gradient(135deg, #6a7c8b, #1f355e)",
         desc: "Sincronización audiovisual con cambios dinámicos de cámara, gravedad invertida y coordinación motora de alta velocidad.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <polygon points="32,10 52,32 32,54 12,32" fill="#67e8f9" stroke="#ffffff" stroke-width="3"/>
-                <polygon points="32,20 42,32 32,44 22,32" fill="#0284c7"/>
+                <polygon points="32,10 52,32 32,54 12,32" fill="#ececec" stroke="#ffffff" stroke-width="3"/>
+                <polygon points="32,20 42,32 32,44 22,32" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -827,16 +822,14 @@
         author: "griffpatch",
         category: "nube",
         tagText: "Motor 3D Raycasting",
-        tagBg: "#e0e7ff",
-        tagColor: "#3730a3",
-        iconBg: "linear-gradient(135deg, #6366f1, #4338ca)",
+        iconBg: "linear-gradient(135deg, #1f355e, #2b477a)",
         desc: "Impresionante ejemplo matemático de proyección 3D (Raycasting) usando únicamente líneas del lápiz de Scratch.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <polygon points="32,12 50,22 50,42 32,52 14,42 14,22" fill="none" stroke="#a5b4fc" stroke-width="3.5"/>
+                <polygon points="32,12 50,22 50,42 32,52 14,42 14,22" fill="none" stroke="#ececec" stroke-width="3.5"/>
                 <line x1="32" y1="12" x2="32" y2="32" stroke="#ffffff" stroke-width="3"/>
                 <line x1="50" y1="22" x2="32" y2="32" stroke="#ffffff" stroke-width="3"/>
                 <line x1="14" y1="22" x2="32" y2="32" stroke="#ffffff" stroke-width="3"/>
-                <line x1="32" y1="32" x2="32" y2="52" stroke="#f43f5e" stroke-width="3.5"/>
+                <line x1="32" y1="32" x2="32" y2="52" stroke="#ff7843" stroke-width="3.5"/>
               </svg>`
       },
       {
@@ -846,15 +839,13 @@
         author: "griffpatch",
         category: "fisica",
         tagText: "Reflejos y Puntería",
-        tagBg: "#fef3c7",
-        tagColor: "#92400e",
-        iconBg: "linear-gradient(135deg, #f59e0b, #b45309)",
+        iconBg: "linear-gradient(135deg, #ff7843, #6a7c8b)",
         desc: "Entrenamiento de puntería y control de ángulo parabólico con efectos cómicos de sonido y física de rebotes.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M12 42C12 27 21 18 32 18C43 18 52 27 52 42H12Z" fill="#fde047" stroke="#b45309" stroke-width="3"/>
+                <path d="M12 42C12 27 21 18 32 18C43 18 52 27 52 42H12Z" fill="#ececec" stroke="#1f355e" stroke-width="3"/>
                 <path d="M16 38C20 34 26 38 32 35C38 32 44 38 48 36" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="25" cy="30" r="2.5" fill="#ef4444"/>
-                <circle cx="38" cy="29" r="2.5" fill="#ef4444"/>
+                <circle cx="25" cy="30" r="2.5" fill="#ff7843"/>
+                <circle cx="38" cy="29" r="2.5" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -864,13 +855,11 @@
         author: "TimMcCool",
         category: "nube",
         tagText: "Lógica y Tareas",
-        tagBg: "#fee2e2",
-        tagColor: "#991b1b",
-        iconBg: "linear-gradient(135deg, #f43f5e, #be123c)",
+        iconBg: "linear-gradient(135deg, #1f355e, #6a7c8b)",
         desc: "Simulador de estación espacial con minirretos de psicomotricidad fina (conectar cables, calibrar escudos) y deducción.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <rect x="20" y="14" width="24" height="32" rx="12" fill="#ffffff"/>
-                <rect x="25" y="21" width="16" height="9" rx="4.5" fill="#38bdf8"/>
+                <rect x="25" y="21" width="16" height="9" rx="4.5" fill="#ff7843"/>
                 <rect x="21" y="42" width="8" height="10" rx="4" fill="#ffffff"/>
                 <rect x="35" y="42" width="8" height="10" rx="4" fill="#ffffff"/>
               </svg>`
@@ -882,15 +871,13 @@
         author: "Will_Wam",
         category: "fisica",
         tagText: "Precisión Motriz",
-        tagBg: "#f3e8ff",
-        tagColor: "#6b21a8",
-        iconBg: "linear-gradient(135deg, #c084fc, #7e22ce)",
+        iconBg: "linear-gradient(135deg, #6a7c8b, #4e5e6b)",
         desc: "Clásico de plataformas minimalista ideal para practicar saltos milimétricos y control de inercia con las flechas.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <rect x="16" y="16" width="32" height="32" rx="6" fill="#ffffff" stroke="#1e293b" stroke-width="3"/>
-                <circle cx="26" cy="30" r="3" fill="#7e22ce"/>
-                <circle cx="38" cy="30" r="3" fill="#7e22ce"/>
-                <rect x="26" y="38" width="12" height="3" rx="1.5" fill="#7e22ce"/>
+                <rect x="16" y="16" width="32" height="32" rx="6" fill="#ffffff" stroke="#1f355e" stroke-width="3"/>
+                <circle cx="26" cy="30" r="3" fill="#ff7843"/>
+                <circle cx="38" cy="30" r="3" fill="#ff7843"/>
+                <rect x="26" y="38" width="12" height="3" rx="1.5" fill="#1f355e"/>
               </svg>`
       },
       {
@@ -900,16 +887,14 @@
         author: "Hobson-TV",
         category: "ritmo",
         tagText: "Detección de Color",
-        tagBg: "#fae8ff",
-        tagColor: "#86198f",
-        iconBg: "linear-gradient(135deg, #ec4899, #9333ea)",
+        iconBg: "linear-gradient(135deg, #1f355e, #31508a)",
         desc: "Excelente ejercicio de atención visual y reflejos basado en bloques de condición 'si tocando el color...'.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M32 12A20 20 0 0 1 52 32" stroke="#facc15" stroke-width="7" stroke-linecap="round"/>
-                <path d="M52 32A20 20 0 0 1 32 52" stroke="#38bdf8" stroke-width="7" stroke-linecap="round"/>
-                <path d="M32 52A20 20 0 0 1 12 32" stroke="#f43f5e" stroke-width="7" stroke-linecap="round"/>
-                <path d="M12 32A20 20 0 0 1 32 12" stroke="#4ade80" stroke-width="7" stroke-linecap="round"/>
-                <circle cx="32" cy="32" r="6" fill="#ffffff"/>
+                <path d="M32 12A20 20 0 0 1 52 32" stroke="#ff7843" stroke-width="7" stroke-linecap="round"/>
+                <path d="M52 32A20 20 0 0 1 32 52" stroke="#ececec" stroke-width="7" stroke-linecap="round"/>
+                <path d="M32 52A20 20 0 0 1 12 32" stroke="#6a7c8b" stroke-width="7" stroke-linecap="round"/>
+                <path d="M12 32A20 20 0 0 1 32 12" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+                <circle cx="32" cy="32" r="6" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -919,13 +904,11 @@
         author: "griffpatch",
         category: "nube",
         tagText: "Ecosistema 2D",
-        tagBg: "#ccfbf1",
-        tagColor: "#115e59",
-        iconBg: "linear-gradient(135deg, #14b8a6, #0f766e)",
+        iconBg: "linear-gradient(135deg, #6a7c8b, #1f355e)",
         desc: "Sistema complejo de inventario, ciclos día/noche, iluminación dinámica y fabricación de herramientas.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="18" fill="#fef08a"/>
-                <path d="M14 42C20 36 28 36 34 40C40 44 46 38 50 36V48H14V42Z" fill="#15803d"/>
+                <circle cx="32" cy="32" r="18" fill="#ff7843"/>
+                <path d="M14 42C20 36 28 36 34 40C40 44 46 38 50 36V48H14V42Z" fill="#ececec"/>
               </svg>`
       },
       {
@@ -935,15 +918,13 @@
         author: "Will_Wam",
         category: "fisica",
         tagText: "Desplazamiento Ágil",
-        tagBg: "#ffedd5",
-        tagColor: "#9a3412",
-        iconBg: "linear-gradient(135deg, #f97316, #c2410c)",
+        iconBg: "linear-gradient(135deg, #ff7843, #e05a26)",
         desc: "Reto de agilidad digital con salto en paredes, trampas móviles y cambio instantáneo de escenarios.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="18" fill="#1e293b"/>
-                <rect x="16" y="25" width="32" height="9" rx="3" fill="#ef4444"/>
-                <circle cx="26" cy="29.5" r="2.5" fill="#ffffff"/>
-                <circle cx="38" cy="29.5" r="2.5" fill="#ffffff"/>
+                <circle cx="32" cy="32" r="18" fill="#1f355e"/>
+                <rect x="16" y="25" width="32" height="9" rx="3" fill="#ececec"/>
+                <circle cx="26" cy="29.5" r="2.5" fill="#ff7843"/>
+                <circle cx="38" cy="29.5" r="2.5" fill="#ff7843"/>
               </svg>`
       }
     ];
@@ -968,7 +949,7 @@
             <div class="icon-box" style="background: ${item.iconBg};">
               ${item.svg}
             </div>
-            <span class="tag" style="background: ${item.tagBg}; color: ${item.tagColor};">
+            <span class="tag">
               ${item.tagText}
             </span>
             <h2>${item.title}</h2>
