@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arcade Scratch - Top 10 Juegos</title>
+  <title>Laboratorio Scratch - Top 10 Proyectos de Programación</title>
   <!-- Fuentes amigables y redondeadas de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,6 @@
       --text-muted: #64748b;
       --scratch-orange: #ffab19;
       --scratch-blue: #4d97ff;
-      --turbo-pink: #ff4c4c;
       --radius-lg: 24px;
       --radius-md: 16px;
     }
@@ -62,12 +61,50 @@
       50% { transform: translateY(-25px) rotate(10deg); }
     }
 
+    /* Barra superior para Padres de Familia */
+    .top-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 20px 0;
+    }
+
+    .btn-parents {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: #ffffff;
+      color: #4f46e5;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18), 0 4px 0 #cbd5e1;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-parents:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22), 0 6px 0 #cbd5e1;
+    }
+
+    .btn-parents:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #cbd5e1;
+    }
+
     /* Encabezado */
     header {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 45px 20px 25px;
+      padding: 25px 20px 25px;
       color: #fff;
     }
 
@@ -86,7 +123,7 @@
 
     header h1 {
       font-family: 'Fredoka', sans-serif;
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-size: clamp(2.1rem, 5vw, 3.4rem);
       font-weight: 700;
       text-shadow: 0 6px 0 rgba(0, 0, 0, 0.18);
       margin-bottom: 10px;
@@ -94,7 +131,7 @@
 
     header p {
       font-size: clamp(1rem, 2.2vw, 1.2rem);
-      max-width: 620px;
+      max-width: 660px;
       margin: 0 auto;
       opacity: 0.95;
       font-weight: 700;
@@ -149,7 +186,7 @@
       gap: 24px;
     }
 
-    /* Tarjeta de juego */
+    /* Tarjeta de proyecto */
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
@@ -217,7 +254,7 @@
 
     .card h2 {
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.38rem;
       font-weight: 700;
       color: var(--text-main);
       margin-bottom: 4px;
@@ -245,7 +282,7 @@
       gap: 10px;
     }
 
-    .btn-play {
+    .btn-explore {
       flex: 1;
       display: inline-flex;
       align-items: center;
@@ -255,21 +292,21 @@
       color: #fff;
       text-decoration: none;
       font-family: 'Fredoka', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 600;
-      padding: 12px 16px;
+      padding: 12px 14px;
       border-radius: var(--radius-md);
       box-shadow: 0 5px 0 #15803d;
       transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
-    .btn-play:hover {
+    .btn-explore:hover {
       background: #16a34a;
       transform: translateY(-2px);
       box-shadow: 0 7px 0 #15803d;
     }
 
-    .btn-play:active {
+    .btn-explore:active {
       transform: translateY(3px);
       box-shadow: 0 2px 0 #15803d;
     }
@@ -288,7 +325,6 @@
       border-radius: var(--radius-md);
       box-shadow: 0 5px 0 #be123c;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
-      title: "Jugar rápido en TurboWarp";
     }
 
     .btn-turbo:hover {
@@ -300,6 +336,144 @@
     .btn-turbo:active {
       transform: translateY(3px);
       box-shadow: 0 2px 0 #be123c;
+    }
+
+    /* Modal Pedagógico para Padres de Familia */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-box {
+      background: #ffffff;
+      max-width: 720px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      border-radius: 28px;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+      animation: popUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes popUp {
+      from { transform: scale(0.92) translateY(15px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      background: #f1f5f9;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #475569;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .modal-close:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .modal-badge {
+      display: inline-block;
+      background: #e0e7ff;
+      color: #4338ca;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .modal-box h2 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.85rem;
+      color: #1e293b;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+
+    .modal-box p {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #334155;
+      margin-bottom: 14px;
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .pillar-card {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .pillar-card h3 {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.1rem;
+      color: #4f46e5;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pillar-card p {
+      font-size: 0.92rem;
+      margin-bottom: 0;
+      color: #475569;
+    }
+
+    .modal-footer-btn {
+      width: 100%;
+      margin-top: 10px;
+      background: #4f46e5;
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      border-radius: 16px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #3730a3;
+      transition: background 0.2s;
+    }
+
+    .modal-footer-btn:hover {
+      background: #4338ca;
     }
 
     /* Pie de página */
@@ -330,39 +504,100 @@
     <div class="shape"></div>
   </div>
 
+  <!-- Botón dedicado para Padres de Familia -->
+  <div class="top-bar">
+    <button class="btn-parents" id="open-parents-modal" type="button">
+      👨‍👩‍👧‍👦 Guía para Papás y Mamás: Beneficios y Psicomotricidad Fina
+    </button>
+  </div>
+
   <header>
-    <div class="badge-top">🚀 ZONA GAMER DE SCRATCH</div>
-    <h1>Top 10 Juegos Más Vistos</h1>
-    <p>¡Elige tu aventura favorita! Presiona el botón verde para abrir en Scratch o el rayo ⚡ para jugar súper rápido.</p>
+    <div class="badge-top">💻 LABORATORIO DE PROGRAMACIÓN CREATIVA</div>
+    <h1>Top 10 Proyectos de Código en Scratch</h1>
+    <p>¡Explora cómo están programados los retos más famosos del mundo! Presiona el botón verde para analizar el código o el rayo ⚡ para ejecutarlo a máxima velocidad.</p>
   </header>
 
-  <nav class="filters" aria-label="Filtrar juegos por categoría">
-    <button class="filter-btn active" data-filter="all">🌟 Todos (10)</button>
-    <button class="filter-btn" data-filter="plataformas">🏃 Plataformas</button>
-    <button class="filter-btn" data-filter="ritmo">🎵 Ritmo y Saltos</button>
-    <button class="filter-btn" data-filter="multijugador">🌍 Multijugador y Aventura</button>
+  <nav class="filters" aria-label="Filtrar proyectos de programación por categoría">
+    <button class="filter-btn active" data-filter="all">🌟 Todos los Códigos (10)</button>
+    <button class="filter-btn" data-filter="fisica">⚙️ Física y Coordenadas</button>
+    <button class="filter-btn" data-filter="ritmo">🎵 Secuencias y Ritmo</button>
+    <button class="filter-btn" data-filter="nube">🌐 Variables en la Nube</button>
   </nav>
 
-  <main class="container" id="games-grid"></main>
+  <main class="container" id="projects-grid"></main>
 
   <footer>
-    <span>💡 Tip: Si un juego se traba un poco, dale clic al botón ⚡ para jugarlo en modo Turbo.</span>
+    <span>💡 Tip de programación: Dentro de Scratch presiona "Ver por dentro" para estudiar los bloques de código de cada proyecto.</span>
   </footer>
 
+  <!-- Ventana Modal de Información para Padres de Familia -->
+  <div class="modal-overlay" id="parents-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close" id="close-parents-modal" aria-label="Cerrar ventana">✕</button>
+      <span class="modal-badge">🧠 ENFOQUE PEDAGÓGICO Y DESARROLLO INFANTIL</span>
+      <h2 id="modal-title">¿Por qué utilizamos estos entornos interactivos en clase de Programación?</h2>
+      
+      <p>
+        Estimados padres y madres de familia: cada uno de los proyectos seleccionados en este repositorio ha sido elegido cuidadosamente como una <strong>herramienta didáctica de entrenamiento neuromotor y pensamiento computacional</strong> diseñada para estudiantes de nivel primaria.
+      </p>
+
+      <p>
+        Más allá de su atractivo visual, la interacción controlada con simuladores programados en <strong>Scratch</strong> (desarrollado por el MIT) cumple un papel fundamental en el desarrollo integral de sus hijos e hijas, especialmente en el fortalecimiento de la <strong>psicomotricidad fina</strong>:
+      </p>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <h3>🖐️ Psicomotricidad Fina y Disociación Digital</h3>
+          <p>
+            El uso preciso de las teclas de dirección, la barra espaciadora y el ratón exige que los niños muevan dedos independientes con distinta presión y velocidad, fortaleciendo la musculatura intrínseca de la mano indispensable para la escritura fluida y el trazo fino.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <h3>👁️ Coordinación Óculo-Manual</h3>
+          <p>
+            Sincronizar lo que los ojos perciben en la pantalla con una respuesta motora exacta en milisegundos entrena las vías visuomotoras del cerebro, mejorando los reflejos, la precisión espacial y la atención sostenida.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <h3>🧭 Lateralidad y Ubicación Espacial</h3>
+          <p>
+            Al interactuar con entornos construidos sobre planos cartesianos (ejes X e Y), los alumnos interiorizan de forma natural conceptos de izquierda, derecha, arriba, abajo, gravedad, trayectorias y cálculo de distancias.
+          </p>
+        </div>
+
+        <div class="pillar-card">
+          <h3>🧩 De Usuarios a Creadores de Código</h3>
+          <p>
+            Cada proyecto permite abrir su interior mediante el botón <em>"Ver por dentro"</em> de Scratch, motivando a los niños a analizar cómo funcionan los ciclos, las condicionales y las variables para después programar sus propias creaciones.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        <strong>En resumen:</strong> cuando su hijo o hija practica con estos proyectos guiados, está ejercitando su precisión motriz, su tolerancia a la frustración, su capacidad de anticipación y las bases reales de la ingeniería de software.
+      </p>
+
+      <button class="modal-footer-btn" id="confirm-parents-modal" type="button">
+        ¡Entendido! Volver al Laboratorio de Programación
+      </button>
+    </div>
+  </div>
+
   <script>
-    const games = [
+    const projects = [
       {
         rank: 1,
         id: "10128407",
         title: "Paper Minecraft v11.7",
         author: "griffpatch",
-        category: "multijugador",
-        tagText: "Construcción",
+        category: "nube",
+        tagText: "Generación de Mundos",
         tagBg: "#dcfce7",
         tagColor: "#166534",
         iconBg: "linear-gradient(135deg, #4ade80, #16a34a)",
-        desc: "Explora, mina bloques, construye tu casa y sobrevive en este increíble mundo 2D inspirado en Minecraft.",
-        // Ícono bloque de césped
+        desc: "Simulador 2D programado con listas y matrices para construir estructuras, administrar recursos y explorar biomas.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <rect x="10" y="10" width="44" height="44" rx="8" fill="#854d0e"/>
                 <path d="M10 18C10 13.5817 13.5817 10 18 10H46C50.4183 10 54 13.5817 54 18V26H46V32H38V24H26V32H18V26H10V18Z" fill="#4ade80"/>
@@ -376,12 +611,11 @@
         title: "Geometry Dash v1.5",
         author: "griffpatch",
         category: "ritmo",
-        tagText: "Ritmo y Saltos",
+        tagText: "Ritmo y Precisión",
         tagBg: "#fef3c7",
         tagColor: "#92400e",
         iconBg: "linear-gradient(135deg, #facc15, #f97316)",
-        desc: "¡Salta al ritmo de la música! Esquiva pinchos y plataformas voladoras en los niveles clásicos 1 al 3.",
-        // Ícono cubo Geometry Dash
+        desc: "Proyecto de sincronización musical y detección de colisiones donde cada salto depende del tiempo exacto del pulso.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <rect x="12" y="12" width="40" height="40" rx="8" fill="#38bdf8" stroke="#1e293b" stroke-width="4"/>
                 <rect x="20" y="22" width="8" height="8" rx="2" fill="#facc15" stroke="#1e293b" stroke-width="2.5"/>
@@ -394,13 +628,12 @@
         id: "389464290",
         title: "Getting Over It v1.4",
         author: "griffpatch",
-        category: "plataformas",
-        tagText: "Súper Reto",
+        category: "fisica",
+        tagText: "Física y Palancas",
         tagBg: "#e0e7ff",
         tagColor: "#3730a3",
         iconBg: "linear-gradient(135deg, #60a5fa, #2563eb)",
-        desc: "Usa tu martillo gigante para escalar una montaña llena de obstáculos. ¡Requiere mucha paciencia y habilidad!",
-        // Ícono martillo y olla
+        desc: "Demostración avanzada de trigonometría, puntos de apoyo y cálculo de fuerzas para escalar una montaña virtual.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <path d="M22 36H42L39 52H25L22 36Z" fill="#334155"/>
                 <circle cx="32" cy="28" r="8" fill="#fde047"/>
@@ -413,13 +646,12 @@
         id: "60917032",
         title: "Appel v1.4",
         author: "griffpatch",
-        category: "plataformas",
-        tagText: "Plataformas",
+        category: "fisica",
+        tagText: "Motor de Gravedad",
         tagBg: "#fee2e2",
         tagColor: "#991b1b",
         iconBg: "linear-gradient(135deg, #fb7185, #e11d48)",
-        desc: "Ayuda a Appel a recolectar todas las manzanas doradas saltando paredes y esquivando enemigos.",
-        // Ícono manzana con carita
+        desc: "Entorno programado con aceleración, rebotes en muros y editor visual para diseñar tus propios mapas de obstáculos.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <path d="M32 18C23 18 15 24 15 35C15 46 23 53 32 53C41 53 49 46 49 35C49 24 41 18 32 18Z" fill="#fde047"/>
                 <path d="M32 18V11" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
@@ -434,13 +666,12 @@
         id: "21554369",
         title: "Epic Ninja v1.12",
         author: "griffpatch",
-        category: "plataformas",
-        tagText: "Acción Ninja",
+        category: "fisica",
+        tagText: "Animación y Clones",
         tagBg: "#f3e8ff",
         tagColor: "#6b21a8",
         iconBg: "linear-gradient(135deg, #a855f7, #6b21a8)",
-        desc: "Corre por las paredes, lanza estrellas shuriken y vence a tus rivales como un verdadero maestro ninja.",
-        // Ícono estrella shuriken
+        desc: "Uso intensivo de clonación de objetos, trayectorias de proyectiles y desplazamiento lateral fluido en Scratch.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <path d="M32 8L38 26L56 32L38 38L32 56L26 38L8 32L26 26L32 8Z" fill="#e2e8f0" stroke="#1e293b" stroke-width="3" stroke-linejoin="round"/>
                 <circle cx="32" cy="32" r="5" fill="#4f46e5"/>
@@ -451,13 +682,12 @@
         id: "887172546",
         title: "Mello 2 // Platformer",
         author: "chipm0nk",
-        category: "plataformas",
-        tagText: "50 Niveles",
+        category: "fisica",
+        tagText: "50 Escenarios",
         tagBg: "#e0f2fe",
         tagColor: "#075985",
         iconBg: "linear-gradient(135deg, #38bdf8, #0284c7)",
-        desc: "¡50 niveles llenos de trampolines, llaves secretas y puertas cerradas! Súper colorido y divertido.",
-        // Ícono personaje Mello con corona/llave
+        desc: "Secuencia lógica de 50 retos con trampolines, sensores de llaves y puertas programadas con variables booleanas.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <rect x="16" y="18" width="32" height="32" rx="10" fill="#ffffff"/>
                 <circle cx="26" cy="32" r="3.5" fill="#0f172a"/>
@@ -475,8 +705,7 @@
         tagBg: "#fef9c3",
         tagColor: "#854d0e",
         iconBg: "linear-gradient(135deg, #fbbf24, #d97706)",
-        desc: "Una versión súper creativa de Geometry Dash donde controlas a un huevito saltarín. ¡Incluye creador de niveles!",
-        // Ícono huevito saltando
+        desc: "Simulador rítmico de precisión motriz que incluye herramientas integradas para que los alumnos diseñen niveles.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <path d="M32 12C22 12 16 25 16 37C16 46 23 52 32 52C41 52 48 46 48 37C48 25 42 12 32 12Z" fill="#fffbeb" stroke="#1e293b" stroke-width="3"/>
                 <circle cx="27" cy="33" r="3" fill="#1e293b"/>
@@ -489,13 +718,12 @@
         id: "612229554",
         title: "Massive Multiplayer",
         author: "griffpatch",
-        category: "multijugador",
-        tagText: "En Línea",
+        category: "nube",
+        tagText: "Datos en la Nube",
         tagBg: "#ccfbf1",
         tagColor: "#115e59",
         iconBg: "linear-gradient(135deg, #2dd4bf, #0d9488)",
-        desc: "¡Juega al mismo tiempo con decenas de jugadores de todo el mundo saltando juntos por un mapa gigante!",
-        // Ícono mundo / jugadores conectados
+        desc: "Ejemplo real de redes y codificación de coordenadas X/Y en tiempo real usando variables en la nube de Scratch.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <circle cx="32" cy="32" r="20" fill="#bae6fd" stroke="#ffffff" stroke-width="3"/>
                 <path d="M18 28C22 25 27 27 29 31C31 35 27 42 22 41" fill="#4ade80"/>
@@ -510,13 +738,12 @@
         id: "56667360",
         title: "Hill Climb Racing",
         author: "griffpatch",
-        category: "plataformas",
-        tagText: "Carreras",
+        category: "fisica",
+        tagText: "Simulación Vehicular",
         tagBg: "#ffedd5",
         tagColor: "#9a3412",
         iconBg: "linear-gradient(135deg, #fb923c, #ea580c)",
-        desc: "Conduce tu jeep por montañas empinadas sin volcarte, recoge monedas y mejora tu motor y llantas.",
-        // Ícono carrito todo terreno
+        desc: "Programación de suspensión, ángulos de inclinación y control de aceleración/frenado sobre terrenos irregulares.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <path d="M14 36L20 24H38L48 32V38H14V36Z" fill="#ef4444" stroke="#ffffff" stroke-width="2.5"/>
                 <circle cx="22" cy="42" r="7" fill="#1e293b" stroke="#cbd5e1" stroke-width="2.5"/>
@@ -528,13 +755,12 @@
         id: "108566337",
         title: "slither.io v1.13",
         author: "griffpatch",
-        category: "multijugador",
-        tagText: "Serpientes",
+        category: "nube",
+        tagText: "Vectores y Seguidores",
         tagBg: "#fae8ff",
         tagColor: "#86198f",
         iconBg: "linear-gradient(135deg, #e879f9, #c026d3)",
-        desc: "Come puntitos brillantes para hacer crecer tu serpiente gigante y personaliza sus colores y estilos.",
-        // Ícono serpiente colorida
+        desc: "Uso de listas de historial de posiciones para que decenas de segmentos sigan con precisión el puntero del ratón.",
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <path d="M16 44C16 34 26 36 30 28C34 20 26 16 36 16C44 16 48 22 48 26" stroke="#bef264" stroke-width="10" stroke-linecap="round"/>
                 <circle cx="48" cy="25" r="2.5" fill="#1e293b"/>
@@ -545,38 +771,38 @@
       }
     ];
 
-    const grid = document.getElementById("games-grid");
+    const grid = document.getElementById("projects-grid");
     const filterButtons = document.querySelectorAll(".filter-btn");
 
-    function renderGames(filter = "all") {
+    function renderProjects(filter = "all") {
       grid.innerHTML = "";
       const filtered = filter === "all" 
-        ? games 
-        : games.filter(g => g.category === filter);
+        ? projects 
+        : projects.filter(p => p.category === filter);
 
-      filtered.forEach(game => {
+      filtered.forEach(item => {
         const card = document.createElement("article");
         card.className = "card";
-        card.setAttribute("data-rank", game.rank);
+        card.setAttribute("data-rank", item.rank);
 
         card.innerHTML = `
-          <span class="rank-badge">#${game.rank}</span>
+          <span class="rank-badge">#${item.rank}</span>
           <div>
-            <div class="icon-box" style="background: ${game.iconBg};">
-              ${game.svg}
+            <div class="icon-box" style="background: ${item.iconBg};">
+              ${item.svg}
             </div>
-            <span class="tag" style="background: ${game.tagBg}; color: ${game.tagColor};">
-              ${game.tagText}
+            <span class="tag" style="background: ${item.tagBg}; color: ${item.tagColor};">
+              ${item.tagText}
             </span>
-            <h2>${game.title}</h2>
-            <p class="author">Por @${game.author}</p>
-            <p class="desc">${game.desc}</p>
+            <h2>${item.title}</h2>
+            <p class="author">Programado por @${item.author}</p>
+            <p class="desc">${item.desc}</p>
           </div>
           <div class="actions">
-            <a class="btn-play" href="https://scratch.mit.edu/projects/${game.id}/" target="_blank" rel="noopener noreferrer">
-              ▶ Jugar
+            <a class="btn-explore" href="https://scratch.mit.edu/projects/${item.id}/" target="_blank" rel="noopener noreferrer">
+              💻 Ver Código
             </a>
-            <a class="btn-turbo" href="https://turbowarp.org/${game.id}" target="_blank" rel="noopener noreferrer" title="Abrir en TurboWarp (60 FPS)">
+            <a class="btn-turbo" href="https://turbowarp.org/${item.id}" target="_blank" rel="noopener noreferrer" title="Ejecutar en modo rápido TurboWarp">
               ⚡ Turbo
             </a>
           </div>
@@ -589,12 +815,25 @@
       btn.addEventListener("click", () => {
         filterButtons.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        renderGames(btn.dataset.filter);
+        renderProjects(btn.dataset.filter);
       });
     });
 
+    // Control de la ventana modal para Padres de Familia
+    const modal = document.getElementById("parents-modal");
+    const openModalBtn = document.getElementById("open-parents-modal");
+    const closeModalBtn = document.getElementById("close-parents-modal");
+    const confirmModalBtn = document.getElementById("confirm-parents-modal");
+
+    openModalBtn.addEventListener("click", () => modal.classList.add("open"));
+    closeModalBtn.addEventListener("click", () => modal.classList.remove("open"));
+    confirmModalBtn.addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) modal.classList.remove("open");
+    });
+
     // Render inicial
-    renderGames();
+    renderProjects();
   </script>
 </body>
 </html>
