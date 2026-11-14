@@ -20,8 +20,8 @@
       --card-bg: #ffffff;
       --text-main: #1f355e;
       --text-muted: #6a7c8b;
-      --radius-lg: 22px;
-      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-md: 15px;
       --font-sans: 'Messina Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-slab: 'Newslab', 'Bitter', Georgia, serif;
     }
@@ -34,15 +34,19 @@
 
     body {
       font-family: var(--font-sans);
-      background: linear-gradient(155deg, var(--brand-navy) 0%, #2a467a 55%, var(--brand-slate) 100%);
+      background-color: var(--brand-navy);
+      background-image: 
+        radial-gradient(rgba(236, 236, 236, 0.08) 1.5px, transparent 1.5px),
+        linear-gradient(155deg, var(--brand-navy) 0%, #2a467a 55%, var(--brand-slate) 100%);
+      background-size: 28px 28px, 100% 100%;
       min-height: 100vh;
       color: var(--text-main);
       padding-bottom: 60px;
       overflow-x: hidden;
     }
 
-    /* Fondo decorativo sutil con los tonos de marca */
-    .bg-shapes {
+    /* Decoración flotante estilo Programador + Amigable para niños */
+    .bg-code-deco {
       position: fixed;
       inset: 0;
       pointer-events: none;
@@ -50,20 +54,25 @@
       overflow: hidden;
     }
 
-    .shape {
+    .code-float {
       position: absolute;
-      border-radius: 50%;
-      background: rgba(236, 236, 236, 0.05);
-      animation: float 14s infinite ease-in-out;
+      font-family: var(--font-slab);
+      font-weight: 800;
+      color: rgba(236, 236, 236, 0.08);
+      user-select: none;
+      animation: floatCode 12s infinite ease-in-out;
     }
 
-    .shape:nth-child(1) { width: 260px; height: 260px; top: -60px; left: -60px; }
-    .shape:nth-child(2) { width: 340px; height: 340px; bottom: 8%; right: -90px; animation-delay: -5s; }
-    .shape:nth-child(3) { width: 160px; height: 160px; top: 45%; left: 8%; animation-delay: -8s; }
+    .code-float.c1 { font-size: 4.2rem; top: 8%; left: 4%; animation-delay: 0s; }
+    .code-float.c2 { font-size: 3.4rem; top: 18%; right: 6%; color: rgba(255, 120, 67, 0.12); animation-delay: -3s; }
+    .code-float.c3 { font-size: 4.5rem; top: 48%; left: 3%; animation-delay: -6s; }
+    .code-float.c4 { font-size: 3.8rem; bottom: 18%; right: 5%; animation-delay: -2s; }
+    .code-float.c5 { font-size: 2.8rem; bottom: 8%; left: 10%; color: rgba(255, 120, 67, 0.12); animation-delay: -8s; }
+    .code-float.c6 { font-size: 3.2rem; top: 72%; right: 12%; animation-delay: -5s; }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(8deg); }
+    @keyframes floatCode {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-18px) rotate(6deg); }
     }
 
     /* Barra superior para Papás */
@@ -71,11 +80,38 @@
       position: relative;
       z-index: 2;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
       max-width: 1200px;
       margin: 0 auto;
       padding: 20px 20px 0;
     }
+
+    /* Mini bloques de código decorativos arriba a la izquierda */
+    .scratch-blocks-deco {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mini-block {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 10px;
+      color: #ffffff;
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .mini-block.orange { background: var(--brand-orange); }
+    .mini-block.slate { background: var(--brand-slate); }
 
     .btn-parents {
       font-family: var(--font-sans);
@@ -105,26 +141,39 @@
       box-shadow: 0 2px 0 #c7ccd1;
     }
 
-    /* Encabezado */
+    /* Encabezado con Mascota Robot Programadora */
     header {
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 26px 20px 26px;
+      padding: 22px 20px 24px;
       color: #ffffff;
+    }
+
+    .mascot-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      animation: bounceBot 3.5s infinite ease-in-out;
+    }
+
+    @keyframes bounceBot {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     .badge-top {
       display: inline-block;
-      background: rgba(255, 120, 67, 0.18);
+      background: rgba(255, 120, 67, 0.2);
       color: #ffffff;
       backdrop-filter: blur(8px);
       padding: 7px 18px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.85rem;
       letter-spacing: 0.8px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       border: 1.5px solid var(--brand-orange);
     }
 
@@ -166,7 +215,7 @@
       border-radius: 999px;
       border: 1.5px solid rgba(236, 236, 236, 0.28);
       cursor: pointer;
-      background: rgba(31, 53, 94, 0.55);
+      background: rgba(31, 53, 94, 0.65);
       color: var(--brand-gray);
       backdrop-filter: blur(6px);
       transition: all 0.2s ease;
@@ -197,7 +246,7 @@
       gap: 24px;
     }
 
-    /* Tarjeta de proyecto */
+    /* Tarjeta de proyecto con estilo bloque de código */
     .card {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
@@ -205,16 +254,29 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border: 1px solid rgba(236, 236, 236, 0.9);
-      box-shadow: 0 14px 28px rgba(15, 25, 48, 0.22), 0 5px 0 rgba(15, 25, 48, 0.12);
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+      border: 2px solid var(--brand-gray);
+      box-shadow: 0 14px 28px rgba(15, 25, 48, 0.24), 0 6px 0 rgba(15, 25, 48, 0.15);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease;
       position: relative;
       overflow: hidden;
     }
 
+    /* Muesca decorativa tipo pieza de programación en la parte superior de la tarjeta */
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 28px;
+      width: 44px;
+      height: 6px;
+      background: var(--brand-orange);
+      border-radius: 0 0 8px 8px;
+    }
+
     .card:hover {
       transform: translateY(-7px);
-      box-shadow: 0 22px 38px rgba(15, 25, 48, 0.3), 0 7px 0 var(--brand-orange);
+      border-color: var(--brand-orange);
+      box-shadow: 0 22px 38px rgba(15, 25, 48, 0.32), 0 7px 0 var(--brand-orange);
     }
 
     /* Número de Ranking */
@@ -238,26 +300,31 @@
       color: #ffffff;
     }
 
-    /* Contenedor del ícono distintivo */
+    /* Contenedor del ícono distintivo amigable */
     .icon-box {
-      width: 80px;
-      height: 80px;
-      border-radius: 20px;
+      width: 86px;
+      height: 86px;
+      border-radius: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 16px;
-      box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.16);
+      box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease;
+    }
+
+    .card:hover .icon-box {
+      transform: scale(1.06) rotate(-3deg);
     }
 
     .icon-box svg {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
     }
 
     .tag {
       display: inline-block;
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.7px;
@@ -271,7 +338,7 @@
 
     .card h2 {
       font-family: var(--font-slab);
-      font-size: 1.3rem;
+      font-size: 1.32rem;
       font-weight: 700;
       color: var(--brand-navy);
       margin-bottom: 4px;
@@ -286,7 +353,7 @@
     }
 
     .desc {
-      font-size: 0.93rem;
+      font-size: 0.94rem;
       line-height: 1.5;
       color: #3d4f63;
       margin-bottom: 20px;
@@ -509,8 +576,8 @@
     }
 
     footer span {
-      background: rgba(17, 31, 56, 0.45);
-      border: 1px solid rgba(236, 236, 236, 0.2);
+      background: rgba(17, 31, 56, 0.55);
+      border: 1.5px solid rgba(236, 236, 236, 0.25);
       padding: 10px 20px;
       border-radius: 999px;
       display: inline-block;
@@ -519,21 +586,55 @@
 </head>
 <body>
 
-  <div class="bg-shapes">
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
+  <!-- Elementos flotantes estilo programación -->
+  <div class="bg-code-deco" aria-hidden="true">
+    <span class="code-float c1">{ }</span>
+    <span class="code-float c2">&lt;/&gt;</span>
+    <span class="code-float c3">01</span>
+    <span class="code-float c4">[ ★ ]</span>
+    <span class="code-float c5">if ( )</span>
+    <span class="code-float c6">⚡</span>
   </div>
 
-  <!-- Botón dedicado para Papás -->
+  <!-- Barra superior: bloques Scratch decorativos + Botón para Papás -->
   <div class="top-bar">
+    <div class="scratch-blocks-deco" aria-hidden="true">
+      <span class="mini-block orange">⚑ al presionar</span>
+      <span class="mini-block slate">↻ repetir por siempre</span>
+    </div>
+
     <button class="btn-parents" id="open-parents-modal" type="button">
       👨‍👩‍👧‍👦 Guía para Papás: Beneficios y Psicomotricidad Fina
     </button>
   </div>
 
   <header>
-    <div class="badge-top">💻 LABORATORIO DE DISEÑO & TECNOLOGÍA</div>
+    <!-- Mascota Robot Programador amigable para niños de primaria -->
+    <div class="mascot-wrap" aria-hidden="true">
+      <svg width="84" height="84" viewBox="0 0 84 84" fill="none">
+        <!-- Antena -->
+        <line x1="42" y1="18" x2="42" y2="8" stroke="#ececec" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="42" cy="7" r="5" fill="#ff7843"/>
+        <!-- Orejas tipo audífonos -->
+        <rect x="10" y="34" width="8" height="18" rx="4" fill="#ff7843"/>
+        <rect x="66" y="34" width="8" height="18" rx="4" fill="#ff7843"/>
+        <!-- Cabeza robot -->
+        <rect x="18" y="18" width="48" height="44" rx="14" fill="#ececec" stroke="#ffffff" stroke-width="3"/>
+        <!-- Pantalla / Visor -->
+        <rect x="24" y="26" width="36" height="22" rx="8" fill="#1f355e"/>
+        <!-- Ojitos felices -->
+        <circle cx="34" cy="36" r="4" fill="#ff7843"/>
+        <circle cx="35.5" cy="34.5" r="1.5" fill="#ffffff"/>
+        <circle cx="50" cy="36" r="4" fill="#ff7843"/>
+        <circle cx="51.5" cy="34.5" r="1.5" fill="#ffffff"/>
+        <!-- Sonrisa programadora -->
+        <path d="M36 54C39 57 45 57 48 54" stroke="#1f355e" stroke-width="3.5" stroke-linecap="round"/>
+        <!-- Base cuello con bloques -->
+        <rect x="30" y="64" width="24" height="8" rx="4" fill="#6a7c8b"/>
+      </svg>
+    </div>
+    <br />
+    <div class="badge-top">💻 LABORATORIO DE PROGRAMACIÓN CREATIVA</div>
     <h1>Top 20 Proyectos de Código en Scratch</h1>
     <p>¡Explora cómo están programados los retos más famosos del mundo! Presiona el botón naranja para analizar el código o el botón azul ⚡ para ejecutarlo a máxima velocidad.</p>
   </header>
@@ -617,11 +718,13 @@
         tagText: "Generación de Mundos",
         iconBg: "linear-gradient(135deg, #1f355e, #37558c)",
         desc: "Simulador 2D programado con listas y matrices para construir estructuras, administrar recursos y explorar biomas.",
+        // Bloque amigable con carita sonriente
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <rect x="10" y="10" width="44" height="44" rx="8" fill="#854d0e"/>
-                <path d="M10 18C10 13.5817 13.5817 10 18 10H46C50.4183 10 54 13.5817 54 18V26H46V32H38V24H26V32H18V26H10V18Z" fill="#4ade80"/>
-                <rect x="20" y="38" width="6" height="6" rx="1" fill="#a16207"/>
-                <rect x="38" y="40" width="6" height="6" rx="1" fill="#a16207"/>
+                <rect x="10" y="10" width="44" height="44" rx="10" fill="#ececec"/>
+                <path d="M10 20C10 14.4772 14.4772 10 20 10H44C49.5228 10 54 14.4772 54 20V26H46V31H38V24H26V31H18V26H10V20Z" fill="#ff7843"/>
+                <circle cx="24" cy="39" r="3" fill="#1f355e"/>
+                <circle cx="40" cy="39" r="3" fill="#1f355e"/>
+                <path d="M28 45C30 47 34 47 36 45" stroke="#1f355e" stroke-width="2.5" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -633,11 +736,16 @@
         tagText: "Ritmo y Precisión",
         iconBg: "linear-gradient(135deg, #ff7843, #e05a26)",
         desc: "Proyecto de sincronización musical y detección de colisiones donde cada salto depende del tiempo exacto del pulso.",
+        // Cubo bailarín con audífonos/notas
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <rect x="12" y="12" width="40" height="40" rx="8" fill="#ececec" stroke="#1f355e" stroke-width="4"/>
-                <rect x="20" y="22" width="8" height="8" rx="2" fill="#ff7843" stroke="#1f355e" stroke-width="2.5"/>
-                <rect x="36" y="22" width="8" height="8" rx="2" fill="#ff7843" stroke="#1f355e" stroke-width="2.5"/>
-                <rect x="20" y="36" width="24" height="6" rx="2" fill="#ff7843" stroke="#1f355e" stroke-width="2.5"/>
+                <rect x="12" y="14" width="40" height="40" rx="10" fill="#ffffff" stroke="#1f355e" stroke-width="3.5"/>
+                <circle cx="25" cy="29" r="3.5" fill="#1f355e"/>
+                <circle cx="26" cy="28" r="1.2" fill="#ffffff"/>
+                <circle cx="39" cy="29" r="3.5" fill="#1f355e"/>
+                <circle cx="40" cy="28" r="1.2" fill="#ffffff"/>
+                <path d="M24 39C27 43 37 43 40 39" stroke="#ff7843" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="19" cy="34" r="2.5" fill="#ff7843" opacity="0.5"/>
+                <circle cx="45" cy="34" r="2.5" fill="#ff7843" opacity="0.5"/>
               </svg>`
       },
       {
@@ -649,11 +757,15 @@
         tagText: "Física y Palancas",
         iconBg: "linear-gradient(135deg, #6a7c8b, #4c5c69)",
         desc: "Demostración avanzada de trigonometría, puntos de apoyo y cálculo de fuerzas para escalar una montaña virtual.",
+        // Explorador simpático en su cápsula con martillo
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M22 36H42L39 52H25L22 36Z" fill="#1f355e"/>
-                <circle cx="32" cy="28" r="8" fill="#ececec"/>
-                <path d="M36 28L48 16" stroke="#ff7843" stroke-width="4" stroke-linecap="round"/>
-                <rect x="43" y="10" width="12" height="7" rx="2" transform="rotate(45 43 10)" fill="#ffffff"/>
+                <path d="M20 36H44L40 52H24L20 36Z" fill="#1f355e"/>
+                <circle cx="32" cy="27" r="9" fill="#ffffff"/>
+                <circle cx="29" cy="26" r="2" fill="#1f355e"/>
+                <circle cx="35" cy="26" r="2" fill="#1f355e"/>
+                <path d="M29 30C31 32 33 32 35 30" stroke="#ff7843" stroke-width="2" stroke-linecap="round"/>
+                <path d="M39 28L50 17" stroke="#ff7843" stroke-width="4" stroke-linecap="round"/>
+                <rect x="45" y="10" width="12" height="7" rx="3" transform="rotate(45 45 10)" fill="#ececec"/>
               </svg>`
       },
       {
@@ -665,13 +777,16 @@
         tagText: "Motor de Gravedad",
         iconBg: "linear-gradient(135deg, #ff7843, #1f355e)",
         desc: "Entorno programado con aceleración, rebotes en muros y editor visual para diseñar tus propios mapas de obstáculos.",
+        // Manzanita kawaii sonriente
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M32 18C23 18 15 24 15 35C15 46 23 53 32 53C41 53 49 46 49 35C49 24 41 18 32 18Z" fill="#ececec"/>
-                <path d="M32 18V11" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-                <path d="M32 13C36 9 42 10 43 14C39 16 35 15 32 13Z" fill="#4ade80"/>
-                <circle cx="26" cy="34" r="3" fill="#1f355e"/>
-                <circle cx="38" cy="34" r="3" fill="#1f355e"/>
-                <path d="M28 41C30 43 34 43 36 41" stroke="#1f355e" stroke-width="3" stroke-linecap="round"/>
+                <path d="M32 19C22 19 14 25 14 36C14 47 22 54 32 54C42 54 50 47 50 36C50 25 42 19 32 19Z" fill="#ffffff"/>
+                <path d="M32 19V11" stroke="#ececec" stroke-width="4" stroke-linecap="round"/>
+                <path d="M32 14C36 9 43 10 44 15C40 17 35 16 32 14Z" fill="#ff7843"/>
+                <circle cx="26" cy="35" r="3.5" fill="#1f355e"/>
+                <circle cx="27" cy="34" r="1.2" fill="#ffffff"/>
+                <circle cx="38" cy="35" r="3.5" fill="#1f355e"/>
+                <circle cx="39" cy="34" r="1.2" fill="#ffffff"/>
+                <path d="M28 42C30 45 34 45 36 42" stroke="#ff7843" stroke-width="3" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -683,9 +798,12 @@
         tagText: "Animación y Clones",
         iconBg: "linear-gradient(135deg, #1f355e, #6a7c8b)",
         desc: "Uso intensivo de clonación de objetos, trayectorias de proyectiles y desplazamiento lateral fluido en Scratch.",
+        // Estrellita ninja amigable con ojitos
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M32 8L38 26L56 32L38 38L32 56L26 38L8 32L26 26L32 8Z" fill="#ececec" stroke="#1f355e" stroke-width="3" stroke-linejoin="round"/>
-                <circle cx="32" cy="32" r="5" fill="#ff7843"/>
+                <path d="M32 8L39 25L56 32L39 39L32 56L25 39L8 32L25 25L32 8Z" fill="#ffffff" stroke="#1f355e" stroke-width="3" stroke-linejoin="round"/>
+                <circle cx="28" cy="31" r="2.5" fill="#1f355e"/>
+                <circle cx="36" cy="31" r="2.5" fill="#1f355e"/>
+                <path d="M29 36C31 38 33 38 35 36" stroke="#ff7843" stroke-width="2.5" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -697,11 +815,15 @@
         tagText: "50 Escenarios",
         iconBg: "linear-gradient(135deg, #6a7c8b, #1f355e)",
         desc: "Secuencia lógica de 50 retos con trampolines, sensores de llaves y puertas programadas con variables booleanas.",
+        // Personaje Mello con coronita y sonrisa
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <rect x="16" y="18" width="32" height="32" rx="10" fill="#ffffff"/>
-                <circle cx="26" cy="32" r="3.5" fill="#1f355e"/>
-                <circle cx="38" cy="32" r="3.5" fill="#1f355e"/>
-                <path d="M22 18L26 11L32 16L38 11L42 18H22Z" fill="#ff7843"/>
+                <rect x="16" y="20" width="32" height="32" rx="12" fill="#ffffff"/>
+                <circle cx="26" cy="34" r="3.5" fill="#1f355e"/>
+                <circle cx="27" cy="33" r="1.2" fill="#ffffff"/>
+                <circle cx="38" cy="34" r="3.5" fill="#1f355e"/>
+                <circle cx="39" cy="33" r="1.2" fill="#ffffff"/>
+                <path d="M28 41C30 43.5 34 43.5 36 41" stroke="#ff7843" stroke-width="2.8" stroke-linecap="round"/>
+                <path d="M22 20L26 12L32 17L38 12L42 20H22Z" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -713,11 +835,14 @@
         tagText: "Ritmo y Editor",
         iconBg: "linear-gradient(135deg, #ff7843, #f06029)",
         desc: "Simulador rítmico de precisión motriz que incluye herramientas integradas para que los alumnos diseñen niveles.",
+        // Huevito saltarín feliz
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M32 12C22 12 16 25 16 37C16 46 23 52 32 52C41 52 48 46 48 37C48 25 42 12 32 12Z" fill="#ffffff" stroke="#1f355e" stroke-width="3"/>
-                <circle cx="27" cy="33" r="3" fill="#1f355e"/>
-                <circle cx="37" cy="33" r="3" fill="#1f355e"/>
-                <path d="M29 39C31 41 33 41 35 39" stroke="#ff7843" stroke-width="3" stroke-linecap="round"/>
+                <path d="M32 11C21 11 15 25 15 38C15 47 22 53 32 53C42 53 49 47 49 38C49 25 43 11 32 11Z" fill="#ffffff" stroke="#1f355e" stroke-width="3"/>
+                <circle cx="26" cy="34" r="3.5" fill="#1f355e"/>
+                <circle cx="27" cy="33" r="1.2" fill="#ffffff"/>
+                <circle cx="38" cy="34" r="3.5" fill="#1f355e"/>
+                <circle cx="39" cy="33" r="1.2" fill="#ffffff"/>
+                <path d="M28 41C30 44 34 44 36 41" stroke="#ff7843" stroke-width="3" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -729,13 +854,14 @@
         tagText: "Datos en la Nube",
         iconBg: "linear-gradient(135deg, #1f355e, #31508a)",
         desc: "Ejemplo real de redes y codificación de coordenadas X/Y en tiempo real usando variables en la nube de Scratch.",
+        // Planeta sonriente con amigos
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="20" fill="#ececec" stroke="#ffffff" stroke-width="3"/>
-                <path d="M18 28C22 25 27 27 29 31C31 35 27 42 22 41" fill="#6a7c8b"/>
-                <path d="M36 20C41 21 46 27 43 33C40 38 35 35 35 30" fill="#6a7c8b"/>
-                <circle cx="32" cy="24" r="4" fill="#ff7843"/>
-                <circle cx="24" cy="38" r="4" fill="#1f355e"/>
-                <circle cx="41" cy="37" r="4" fill="#ff7843"/>
+                <circle cx="32" cy="32" r="21" fill="#ececec" stroke="#ffffff" stroke-width="3"/>
+                <path d="M16 26C20 23 25 25 27 29C29 33 25 40 20 39" fill="#6a7c8b"/>
+                <path d="M38 19C43 20 48 26 45 32C42 37 37 34 37 29" fill="#6a7c8b"/>
+                <circle cx="27" cy="32" r="2.8" fill="#1f355e"/>
+                <circle cx="37" cy="32" r="2.8" fill="#1f355e"/>
+                <path d="M28 38C30 40.5 34 40.5 36 38" stroke="#ff7843" stroke-width="3" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -747,10 +873,14 @@
         tagText: "Simulación Vehicular",
         iconBg: "linear-gradient(135deg, #6a7c8b, #51616e)",
         desc: "Programación de suspensión, ángulos de inclinación y control de aceleración/frenado sobre terrenos irregulares.",
+        // Carrito amigable con faro/ojito
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M14 36L20 24H38L48 32V38H14V36Z" fill="#ff7843" stroke="#ffffff" stroke-width="2.5"/>
-                <circle cx="22" cy="42" r="7" fill="#1f355e" stroke="#ececec" stroke-width="2.5"/>
-                <circle cx="42" cy="42" r="7" fill="#1f355e" stroke="#ececec" stroke-width="2.5"/>
+                <path d="M13 36L20 22H39L50 31V39H13V36Z" fill="#ff7843" stroke="#ffffff" stroke-width="2.5"/>
+                <rect x="23" y="25" width="12" height="7" rx="3" fill="#ffffff"/>
+                <circle cx="21" cy="43" r="7.5" fill="#1f355e" stroke="#ffffff" stroke-width="2.5"/>
+                <circle cx="21" cy="43" r="2.5" fill="#ececec"/>
+                <circle cx="43" cy="43" r="7.5" fill="#1f355e" stroke="#ffffff" stroke-width="2.5"/>
+                <circle cx="43" cy="43" r="2.5" fill="#ececec"/>
               </svg>`
       },
       {
@@ -762,12 +892,15 @@
         tagText: "Vectores y Seguidores",
         iconBg: "linear-gradient(135deg, #1f355e, #6a7c8b)",
         desc: "Uso de listas de historial de posiciones para que decenas de segmentos sigan con precisión el puntero del ratón.",
+        // Oruguita/serpiente simpática con ojitos grandes
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M16 44C16 34 26 36 30 28C34 20 26 16 36 16C44 16 48 22 48 26" stroke="#ececec" stroke-width="10" stroke-linecap="round"/>
-                <circle cx="48" cy="25" r="2.5" fill="#1f355e"/>
-                <circle cx="44" cy="28" r="2.5" fill="#1f355e"/>
-                <circle cx="20" cy="20" r="3.5" fill="#ff7843"/>
-                <circle cx="46" cy="44" r="3.5" fill="#ff7843"/>
+                <path d="M15 44C15 34 25 36 29 28C33 20 26 16 37 16C45 16 49 22 49 27" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/>
+                <circle cx="49" cy="25" r="3" fill="#1f355e"/>
+                <circle cx="50" cy="24" r="1" fill="#ffffff"/>
+                <circle cx="43" cy="28" r="3" fill="#1f355e"/>
+                <circle cx="44" cy="27" r="1" fill="#ffffff"/>
+                <circle cx="19" cy="20" r="4" fill="#ff7843"/>
+                <circle cx="46" cy="45" r="4" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -779,10 +912,12 @@
         tagText: "Sellado y Terreno",
         iconBg: "linear-gradient(135deg, #1f355e, #2f4d85)",
         desc: "Arquitectura de renderizado rápido mediante bloques de sellado (Pen Stamp) para generar cavernas y minerales subterráneos.",
+        // Gemita brillante con carita feliz
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M18 46L34 30" stroke="#ececec" stroke-width="5" stroke-linecap="round"/>
-                <path d="M24 18C32 16 44 22 46 34" stroke="#ff7843" stroke-width="6" stroke-linecap="round"/>
-                <circle cx="44" cy="44" r="5" fill="#ececec"/>
+                <polygon points="32,10 52,24 44,50 20,50 12,24" fill="#ffffff" stroke="#ff7843" stroke-width="3.5" stroke-linejoin="round"/>
+                <circle cx="27" cy="32" r="2.8" fill="#1f355e"/>
+                <circle cx="37" cy="32" r="2.8" fill="#1f355e"/>
+                <path d="M28 38C30 40.5 34 40.5 36 38" stroke="#ff7843" stroke-width="2.8" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -794,11 +929,14 @@
         tagText: "Mecánicas de Salto",
         iconBg: "linear-gradient(135deg, #ff7843, #d95b2b)",
         desc: "Programación de proyectiles con retorno (búmeran), físicas de impulso y exploración de escenarios con cámara fluida.",
+        // Gorrita mágica con ojitos
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M14 36C14 23 22 16 32 16C42 16 50 23 50 36H14Z" fill="#ffffff"/>
-                <rect x="12" y="34" width="40" height="7" rx="3.5" fill="#ececec"/>
-                <circle cx="32" cy="26" r="6" fill="#1f355e"/>
-                <path d="M29 29V23L32 27L35 23V29" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 37C14 23 22 15 32 15C42 15 50 23 50 37H14Z" fill="#ffffff"/>
+                <rect x="11" y="35" width="42" height="7" rx="3.5" fill="#ececec"/>
+                <circle cx="26" cy="28" r="3" fill="#1f355e"/>
+                <circle cx="38" cy="28" r="3" fill="#1f355e"/>
+                <circle cx="27" cy="27" r="1" fill="#ffffff"/>
+                <circle cx="39" cy="27" r="1" fill="#ffffff"/>
               </svg>`
       },
       {
@@ -810,9 +948,14 @@
         tagText: "Efectos y Ritmo",
         iconBg: "linear-gradient(135deg, #6a7c8b, #1f355e)",
         desc: "Sincronización audiovisual con cambios dinámicos de cámara, gravedad invertida y coordinación motora de alta velocidad.",
+        // Cohete espacial amigable
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <polygon points="32,10 52,32 32,54 12,32" fill="#ececec" stroke="#ffffff" stroke-width="3"/>
-                <polygon points="32,20 42,32 32,44 22,32" fill="#ff7843"/>
+                <path d="M32 10C40 18 44 28 44 40H20C20 28 24 18 32 10Z" fill="#ffffff"/>
+                <path d="M20 34L12 44H20V34Z" fill="#ff7843"/>
+                <path d="M44 34L52 44H44V34Z" fill="#ff7843"/>
+                <circle cx="32" cy="28" r="6" fill="#1f355e"/>
+                <circle cx="34" cy="26" r="2" fill="#ffffff"/>
+                <path d="M27 44L32 54L37 44H27Z" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -824,12 +967,12 @@
         tagText: "Motor 3D Raycasting",
         iconBg: "linear-gradient(135deg, #1f355e, #2b477a)",
         desc: "Impresionante ejemplo matemático de proyección 3D (Raycasting) usando únicamente líneas del lápiz de Scratch.",
+        // Cubo 3D amigable
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <polygon points="32,12 50,22 50,42 32,52 14,42 14,22" fill="none" stroke="#ececec" stroke-width="3.5"/>
-                <line x1="32" y1="12" x2="32" y2="32" stroke="#ffffff" stroke-width="3"/>
-                <line x1="50" y1="22" x2="32" y2="32" stroke="#ffffff" stroke-width="3"/>
-                <line x1="14" y1="22" x2="32" y2="32" stroke="#ffffff" stroke-width="3"/>
-                <line x1="32" y1="32" x2="32" y2="52" stroke="#ff7843" stroke-width="3.5"/>
+                <polygon points="32,11 51,22 51,43 32,54 13,43 13,22" fill="#ececec" stroke="#ffffff" stroke-width="3"/>
+                <polyline points="13,22 32,33 51,22" fill="none" stroke="#1f355e" stroke-width="3"/>
+                <line x1="32" y1="33" x2="32" y2="54" stroke="#1f355e" stroke-width="3"/>
+                <circle cx="32" cy="22" r="3.5" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -841,11 +984,13 @@
         tagText: "Reflejos y Puntería",
         iconBg: "linear-gradient(135deg, #ff7843, #6a7c8b)",
         desc: "Entrenamiento de puntería y control de ángulo parabólico con efectos cómicos de sonido y física de rebotes.",
+        // Taquito sonriente súper simpático
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <path d="M12 42C12 27 21 18 32 18C43 18 52 27 52 42H12Z" fill="#ececec" stroke="#1f355e" stroke-width="3"/>
-                <path d="M16 38C20 34 26 38 32 35C38 32 44 38 48 36" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="25" cy="30" r="2.5" fill="#ff7843"/>
-                <circle cx="38" cy="29" r="2.5" fill="#ff7843"/>
+                <path d="M11 43C11 27 20 17 32 17C44 17 53 27 53 43H11Z" fill="#ffffff" stroke="#1f355e" stroke-width="3"/>
+                <path d="M15 39C20 35 26 39 32 36C38 33 44 39 49 37" stroke="#ff7843" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="26" cy="29" r="2.8" fill="#1f355e"/>
+                <circle cx="38" cy="29" r="2.8" fill="#1f355e"/>
+                <path d="M29 33C31 35 33 35 35 33" stroke="#1f355e" stroke-width="2.2" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -857,9 +1002,11 @@
         tagText: "Lógica y Tareas",
         iconBg: "linear-gradient(135deg, #1f355e, #6a7c8b)",
         desc: "Simulador de estación espacial con minirretos de psicomotricidad fina (conectar cables, calibrar escudos) y deducción.",
+        // Astronauta redondeado amigable
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <rect x="20" y="14" width="24" height="32" rx="12" fill="#ffffff"/>
-                <rect x="25" y="21" width="16" height="9" rx="4.5" fill="#ff7843"/>
+                <rect x="20" y="13" width="24" height="33" rx="12" fill="#ffffff"/>
+                <rect x="24" y="20" width="17" height="10" rx="5" fill="#ff7843"/>
+                <rect x="27" y="22" width="7" height="3" rx="1.5" fill="#ffffff"/>
                 <rect x="21" y="42" width="8" height="10" rx="4" fill="#ffffff"/>
                 <rect x="35" y="42" width="8" height="10" rx="4" fill="#ffffff"/>
               </svg>`
@@ -873,11 +1020,12 @@
         tagText: "Precisión Motriz",
         iconBg: "linear-gradient(135deg, #6a7c8b, #4e5e6b)",
         desc: "Clásico de plataformas minimalista ideal para practicar saltos milimétricos y control de inercia con las flechas.",
+        // Cubito con cara feliz
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <rect x="16" y="16" width="32" height="32" rx="6" fill="#ffffff" stroke="#1f355e" stroke-width="3"/>
-                <circle cx="26" cy="30" r="3" fill="#ff7843"/>
-                <circle cx="38" cy="30" r="3" fill="#ff7843"/>
-                <rect x="26" y="38" width="12" height="3" rx="1.5" fill="#1f355e"/>
+                <rect x="15" y="15" width="34" height="34" rx="9" fill="#ffffff" stroke="#1f355e" stroke-width="3"/>
+                <circle cx="26" cy="30" r="3.5" fill="#1f355e"/>
+                <circle cx="38" cy="30" r="3.5" fill="#1f355e"/>
+                <path d="M27 38C29.5 41 34.5 41 37 38" stroke="#ff7843" stroke-width="3" stroke-linecap="round"/>
               </svg>`
       },
       {
@@ -889,12 +1037,13 @@
         tagText: "Detección de Color",
         iconBg: "linear-gradient(135deg, #1f355e, #31508a)",
         desc: "Excelente ejercicio de atención visual y reflejos basado en bloques de condición 'si tocando el color...'.",
+        // Aro de colores con estrellita central
         svg: `<svg viewBox="0 0 64 64" fill="none">
                 <path d="M32 12A20 20 0 0 1 52 32" stroke="#ff7843" stroke-width="7" stroke-linecap="round"/>
                 <path d="M52 32A20 20 0 0 1 32 52" stroke="#ececec" stroke-width="7" stroke-linecap="round"/>
                 <path d="M32 52A20 20 0 0 1 12 32" stroke="#6a7c8b" stroke-width="7" stroke-linecap="round"/>
                 <path d="M12 32A20 20 0 0 1 32 12" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
-                <circle cx="32" cy="32" r="6" fill="#ff7843"/>
+                <circle cx="32" cy="32" r="7" fill="#ff7843"/>
               </svg>`
       },
       {
@@ -906,9 +1055,13 @@
         tagText: "Ecosistema 2D",
         iconBg: "linear-gradient(135deg, #6a7c8b, #1f355e)",
         desc: "Sistema complejo de inventario, ciclos día/noche, iluminación dinámica y fabricación de herramientas.",
+        // Sol sonriente sobre colina
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="18" fill="#ff7843"/>
-                <path d="M14 42C20 36 28 36 34 40C40 44 46 38 50 36V48H14V42Z" fill="#ececec"/>
+                <circle cx="32" cy="29" r="15" fill="#ff7843"/>
+                <circle cx="28" cy="27" r="2.2" fill="#ffffff"/>
+                <circle cx="36" cy="27" r="2.2" fill="#ffffff"/>
+                <path d="M29 32C31 34 33 34 35 32" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                <path d="M12 44C19 37 28 37 34 41C40 45 47 39 52 37V50H12V44Z" fill="#ececec"/>
               </svg>`
       },
       {
@@ -920,11 +1073,14 @@
         tagText: "Desplazamiento Ágil",
         iconBg: "linear-gradient(135deg, #ff7843, #e05a26)",
         desc: "Reto de agilidad digital con salto en paredes, trampas móviles y cambio instantáneo de escenarios.",
+        // Ninja chiquito amigable
         svg: `<svg viewBox="0 0 64 64" fill="none">
-                <circle cx="32" cy="32" r="18" fill="#1f355e"/>
-                <rect x="16" y="25" width="32" height="9" rx="3" fill="#ececec"/>
-                <circle cx="26" cy="29.5" r="2.5" fill="#ff7843"/>
-                <circle cx="38" cy="29.5" r="2.5" fill="#ff7843"/>
+                <circle cx="32" cy="32" r="19" fill="#1f355e"/>
+                <rect x="15" y="25" width="34" height="11" rx="5" fill="#ffffff"/>
+                <circle cx="26" cy="30.5" r="3" fill="#1f355e"/>
+                <circle cx="27" cy="29.5" r="1" fill="#ffffff"/>
+                <circle cx="38" cy="30.5" r="3" fill="#1f355e"/>
+                <circle cx="39" cy="29.5" r="1" fill="#ffffff"/>
               </svg>`
       }
     ];
